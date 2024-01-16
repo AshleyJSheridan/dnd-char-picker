@@ -1,0 +1,56 @@
+.gender-selection {
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 1em;
+        width: 100%;
+    }
+
+    li {
+        background-image: url('/img/paper-texture.jpg');
+        background-size: cover;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        height: 200px;
+        margin: 0 .5em;
+    }
+
+    button {
+        background-color: rgba($purple, .2);
+        border: 1px solid $black;
+        color: inherit;
+        cursor: pointer;
+        font-size: 200%;
+        height: 100%;
+
+        &:hover {
+            background-color: rgba($green, .2);
+        }
+    }
+
+    .gender-symbol {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: block;
+        height: 1.5em;
+        margin-bottom: .25em;
+        width: 100%;
+    }
+
+    .active button {
+        background: rgba($purple, .5);
+        color: $white;
+    }
+
+    .gender-male .gender-symbol {
+        background-image: url('/img/gender icons/male.svg');
+        
+    }
+
+    .gender-female .gender-symbol {
+        background-image: url('/img/gender icons/female.svg');
+    }
+}

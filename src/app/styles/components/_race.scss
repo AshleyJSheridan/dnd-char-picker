@@ -1,0 +1,93 @@
+.race-selection,
+.selected-race {
+    flex: 50%;
+}
+
+.race-selection {
+    display: flex;
+    padding: 1em;
+
+    .races {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .race {
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 150px;
+        width: 150px;
+
+        &.active {
+            border: 2px inset $green;
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: flex-end;
+            width: 100%;
+
+            &:hover {
+                background-color: rgba($white, .5);
+            }
+        }
+
+        .name {
+            background-color: rgba($white, .75);
+            font-weight: bold;
+            padding: .25em;
+        }
+
+        .sub-race {
+            border: 1px solid $light-grey;
+            padding: 1em;
+
+            .races {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 1em;
+            }
+
+            .race {
+                display: block;
+            }
+        }
+    }
+}
+  
+.race-main-details {
+    display: flex;
+    flex-direction: row;
+
+    .race-details-intro,
+    .race-details-traits {
+        flex: 50%;
+    }
+
+    .race-details-intro {
+        padding-right: 2em;
+    }
+}
+
+.selected-race {
+    padding: 0 1em;
+
+    h2 {
+        margin-top: 0;
+    }
+}
+
+.traits-list dt {
+    font-weight: bold;
+}
+  
+.traits-list dd {
+    margin-bottom: .5em;
+    padding-left: 1.5em;
+}

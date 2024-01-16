@@ -1,0 +1,21 @@
+.button-next {
+    background-color: $purple;
+    border: none;
+    color: $white;
+    cursor: pointer;
+    font-weight: bold;
+    padding: .75em;
+
+    &:hover {
+        opacity: .5;
+    }
+
+    &:after {
+        content: ' >';
+    }
+}
+
+button:disabled {
+    display: none;
+}
+  

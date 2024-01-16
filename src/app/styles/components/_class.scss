@@ -1,0 +1,192 @@
+.class-selection .class-list {
+    display: grid;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    width: 90%;
+}
+  
+.class-selection .class-list .character-class {
+    border: 1px solid #000;
+    cursor: pointer;
+    display: block;
+    margin: .5em;
+    padding: 1em;
+
+    &:hover {
+        background-color: $light-grey;
+    }
+}
+  
+.class-selection .name {
+    font-weight: bold;
+    text-align: center;
+}
+  
+.class-selection  .class-icon {
+    display: block;
+    height: 100px;
+    margin: .5em auto;
+}
+  
+.class-selection .description {
+    border: 1px solid #ccc;
+    display: block;
+    height: 5em;
+    margin-bottom: .5em;
+    overflow-y: scroll;
+    padding: .25em;
+}
+
+.weapon-armor-proficiencies {
+    clear: both;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+
+    .proficiencies-armor,
+    .proficiencies-weapons {
+        flex: 1;
+    
+        ul {
+            height: 5.5em;
+            overflow-y: scroll;
+            padding-left: 1em;
+        }
+    }
+}
+
+.class-stat-block {
+    display: grid;
+    grid-template-columns: max-content auto;
+    margin-top: 1em;
+
+    dt {
+        font-weight: bold;
+        padding-right: 1em;
+    }
+}
+
+.modal-content .class-icon {
+    display: inline-block;
+    float: right;
+    height: auto;
+    width: 6.5em;
+}
+
+/** skills accordion */
+.class-skill-list  {
+    details {
+        margin-bottom: .5em;
+    }
+
+    summary {
+        background-image: url('/img/paper-rectangle-ripped.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        border: 1px solid transparent;
+        position: relative;
+        user-select: none;
+
+        &::marker {
+            content: "";
+            display: none;
+
+        }
+    }
+
+    .class-skill-name {
+        cursor: pointer;
+        margin: 1em;
+        padding-left: 1em;
+
+        li {
+            list-style-type: disc;
+            margin: .75em 0;
+        }
+    }
+
+    details summary:after {
+        content: "▶";
+        position: absolute;
+        right: 3em;
+        top: 1.5em;
+    }
+
+    details[open] summary:after {
+        content: "▼";
+    }
+
+    .class-skill-name-level {
+        display: block;
+        font-size: 75%;
+    }
+
+    .class-skill-description {
+        border: 1px solid $light-grey;
+        border-top: none;
+        margin-top: -.5em;
+        padding: 1em;
+
+        p {
+            margin: .5em 0;
+        }
+
+        ul,
+        ol {
+            margin: .5em 0;
+            padding-left: 1em;
+        }
+    }
+}
+
+/** class icons */
+.class-barbarian .class-icon {
+    filter: invert(50%) sepia(13%) saturate(2120%) hue-rotate(324deg) brightness(94%) contrast(89%);
+}
+
+.class-bard .class-icon {
+    filter: invert(54%) sepia(25%) saturate(554%) hue-rotate(249deg) brightness(92%) contrast(85%);
+}
+
+.class-cleric .class-icon {
+    filter: invert(55%) sepia(5%) saturate(120%) hue-rotate(181deg) brightness(95%) contrast(89%);
+}
+
+.class-druid .class-icon {
+    filter: invert(49%) sepia(21%) saturate(978%) hue-rotate(30deg) brightness(88%) contrast(91%);
+}
+
+.class-fighter .class-icon {
+    filter: invert(16%) sepia(99%) saturate(381%) hue-rotate(336deg) brightness(86%) contrast(85%);
+}
+
+.class-monk .class-icon {
+    filter: invert(56%) sepia(21%) saturate(1184%) hue-rotate(151deg) brightness(93%) contrast(100%);
+}
+
+.class-paladin .class-icon {
+    filter: invert(49%) sepia(55%) saturate(478%) hue-rotate(10deg) brightness(100%) contrast(91%);
+}
+
+.class-ranger .class-icon {
+    filter: invert(43%) sepia(8%) saturate(1806%) hue-rotate(89deg) brightness(93%) contrast(96%);
+}
+
+.class-rogue .class-icon {
+    filter: invert(30%) sepia(5%) saturate(536%) hue-rotate(30deg) brightness(91%) contrast(86%);
+}
+
+.class-sorcerer .class-icon {
+    filter: invert(42%) sepia(48%) saturate(1804%) hue-rotate(324deg) brightness(81%) contrast(84%);
+}
+
+.class-warlock .class-icon {
+    filter: invert(24%) sepia(33%) saturate(3318%) hue-rotate(246deg) brightness(96%) contrast(92%);
+}
+
+.class-wizard .class-icon {
+    filter: invert(33%) sepia(65%) saturate(1488%) hue-rotate(199deg) brightness(81%) contrast(83%);
+}
