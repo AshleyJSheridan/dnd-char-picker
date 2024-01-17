@@ -1,6 +1,6 @@
 "use client";
 
-import { CharClasses, CharClass } from "./charClasses";
+import { CharClasses, CharClass, CharClass } from "./charClasses";
 import ClassDetails from "./classDetails";
 import React, { useState } from "react";
 import ClassIcon from "./classIcon";
@@ -24,8 +24,16 @@ export default function CharClass({canShow, currentStep, setCurrentStep, charCla
     }
 
     function handleClassSelect(charClass: CharClass) {
-        console.log(charClass)
         setSelectedClass(charClass);
+    }
+
+    function handleConfirmClassSelect(charClass: CharClass) {
+        setCharClass(charClass);
+        setCurrentStep({
+            ...currentStep,
+            current: currentStep.current + 1,
+            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
+        }); 
     }
 
     if(!canShowComponent)
@@ -38,7 +46,7 @@ export default function CharClass({canShow, currentStep, setCurrentStep, charCla
                     {getClassListContent()}
                 </ul>
             </section>
-            <ClassDetails charClass={selectedClass} setCharClass={setSelectedClass}/>
+            <ClassDetails charClass={selectedClass} setCharClass={setSelectedClass} confirmCharClass={handleConfirmClassSelect}/>
         </>
     );
 }

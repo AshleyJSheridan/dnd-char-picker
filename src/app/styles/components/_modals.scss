@@ -28,31 +28,35 @@
     text-align: left;
     vertical-align: middle;
     width: 90%;
-}
 
-.modal-dialog h2 {
-    background-color: $purple;
-    border-radius: 5px 5px 0 0;
-    color: $white;
-    margin: 0;
-    padding: .5em .75em .75em;
-}
+    h2 {
+        background-color: $purple;
+        border-radius: 5px 5px 0 0;
+        color: $white;
+        margin: 0;
+        padding: .5em .75em .75em;
+    }
 
-.close-modal {
-    background-color: transparent;
-    background-image: url(/img/close.svg);
-    background-size: 100%;
-    border: none;
-    cursor: pointer;
-    height: 2em;
-    position: absolute;
-    right: 1em;
-    top: 1em;
-    width: 2em;
+    .close-modal {
+        background-color: transparent;
+        background-image: url(/img/close.svg);
+        background-size: 100%;
+        border: none;
+        cursor: pointer;
+        height: 2em;
+        position: absolute;
+        right: 1em;
+        top: 1em;
+        width: 2em;
+    }
+
+    .button-next {
+        margin: 1em;
+    }
 }
 
 .modal-content {
-    max-height: 70vh;
+    max-height: 65vh;
     overflow-y: scroll;
-    padding: 1em;
+    padding: 0 1em 0;
 }

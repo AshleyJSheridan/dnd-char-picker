@@ -1,6 +1,6 @@
 import ClassIcon from "./classIcon";
 
-export default function ClassDetails({charClass, setCharClass}) {
+export default function ClassDetails({charClass, setCharClass, confirmCharClass}) {
     function getReadableAbilitiesList(abilities: Array<{name: string, description: string}>) {
         return abilities.map(ability => 
             ability.name
@@ -36,6 +36,10 @@ export default function ClassDetails({charClass, setCharClass}) {
         setCharClass(null);
     }
 
+    function next() {
+        confirmCharClass(charClass);
+    }
+
     if(!charClass)
         return '';
 
@@ -50,7 +54,10 @@ export default function ClassDetails({charClass, setCharClass}) {
                         onClick={() => handleCloseModal()}
                     ></button>
                     <h2 id={'modal-heading-' + charClass.id}>Confirm Class - {charClass.name}</h2>
-                    <div className="modal-content">
+
+                    <button className="button-next" onClick={() => next()}>Next</button>
+                    
+                    <div className={'modal-content class-' + charClass.name.toLowerCase()}>
                         <p className="class-description">
                             <ClassIcon charClassName={charClass.name}/>
                             {charClass.description}
@@ -86,6 +93,8 @@ export default function ClassDetails({charClass, setCharClass}) {
                             {getSkillsBlocks(charClass.classSkills)}
                         </div>
                     </div>
+
+                    <button className="button-next" onClick={() => next()}>Next</button>
                 </div>
             </div>
         </div>
