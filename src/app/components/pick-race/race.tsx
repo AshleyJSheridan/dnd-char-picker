@@ -1,13 +1,11 @@
 "use client";
 
 import React from "react";
-import { Races } from "./races";
+import { Races } from "../../repositories/races";
 import TraitList from "./traitList";
 import RaceIntro from "./raceIntro";
 
 export default function Race({canShow, gender, currentStep, setCurrentStep, race, setRace}) {
-    let canShowComponent = canShow('Race');
-
     const raceSelections = Races.map(mainRace => 
         <li 
             key={mainRace.id} 
@@ -85,14 +83,14 @@ export default function Race({canShow, gender, currentStep, setCurrentStep, race
                 <section className="race-main-details">
                     <RaceIntro raceName={race?.subrace?.name}></RaceIntro>
 
-                    <TraitList traits={race?.subrace?.traits}></TraitList>
+                    <TraitList traits={race?.subrace?.traits} languages={null}></TraitList>
                 </section>
             </section>
         );
 
     }
 
-    if(!canShowComponent)
+    if(!canShow)
         return '';
 
     return (
@@ -106,7 +104,7 @@ export default function Race({canShow, gender, currentStep, setCurrentStep, race
                 <section className={'selected-race race-' + getRaceClassName(race)}>
                     <section className="race-main-details">
                         <RaceIntro raceName={race?.name}></RaceIntro>
-                        <TraitList traits={race?.traits}></TraitList>
+                        <TraitList traits={race?.traits} languages={race?.languages}></TraitList>
                     </section>
 
                     {getSubRaceSelectionContent()}

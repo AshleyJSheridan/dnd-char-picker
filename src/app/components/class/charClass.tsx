@@ -1,13 +1,11 @@
 "use client";
 
-import { CharClasses, CharClass, CharClass } from "./charClasses";
+import { CharClasses, CharClass, CharClass } from "../../repositories/charClasses";
 import ClassDetails from "./classDetails";
 import React, { useState } from "react";
 import ClassIcon from "./classIcon";
 
 export default function CharClass({canShow, currentStep, setCurrentStep, charClass, setCharClass}) {
-    let canShowComponent = canShow('Class');
-
     let [selectedClass, setSelectedClass] = useState(null);
 
     function getClassListContent() {
@@ -36,7 +34,7 @@ export default function CharClass({canShow, currentStep, setCurrentStep, charCla
         }); 
     }
 
-    if(!canShowComponent)
+    if(!canShow)
         return '';
 
     return (

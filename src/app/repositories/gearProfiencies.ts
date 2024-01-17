@@ -1,4 +1,4 @@
-import { ProfiencySubClasses } from "./proficiencySubClasses";
+import { ProfiencySubClasses } from "../enums/proficiencySubClasses";
 
 export interface GearProficiency {
     id: string;

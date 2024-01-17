@@ -1,5 +1,5 @@
-import { SkillType } from "./skillType";
-import { SpellSchools } from "../spells/spellSchools";
+import { SkillType } from "../enums/skillType";
+import { SpellSchools } from "../enums/spellSchools";
 
 export interface ClassSkill {
     id: string;

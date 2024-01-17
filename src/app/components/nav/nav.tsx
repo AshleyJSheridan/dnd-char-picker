@@ -1,6 +1,6 @@
 "use client";
 
-import { NavItems } from "./navItems";
+import { NavItems } from "../../enums/navItems";
 
 export default function Nav({currentStep, setCurrentStep}) {
 

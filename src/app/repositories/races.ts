@@ -1,5 +1,5 @@
 import { Traits, Trait } from "./traits";
-import { Languages } from "./languages";
+import { Languages, Language } from "../enums/languages";
 
 export interface SubRace {
     id: number;
@@ -15,7 +15,7 @@ export interface Race {
     speed: number;
     subraces?: SubRace[];
     traits: Trait[];
-    languages: Languages[];
+    languages: Language[];
 };
 
 export const Races = [

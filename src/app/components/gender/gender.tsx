@@ -1,8 +1,6 @@
 "use client";
 
 export default function Gender({canShow, gender, setGender, currentStep, setCurrentStep}) {
-    let canShowComponent = canShow('Gender');
-
     function handleGenderSelection(genderSelection) {
         setGender(genderSelection);
     }
@@ -17,7 +15,7 @@ export default function Gender({canShow, gender, setGender, currentStep, setCurr
         }
     }
 
-    if(!canShowComponent)
+    if(!canShow)
         return '';
 
     return (

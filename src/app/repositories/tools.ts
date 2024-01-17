@@ -1,4 +1,4 @@
-import { ToolTypes } from "./toolTypes";
+import { ToolTypes } from "../enums/toolTypes";
 
 export interface Tool {
     id: string;

@@ -1,10 +1,10 @@
-import { Abilities, Ability } from "../skills/abilities";
-import { GearProficiencies, GearProficiency } from "../skills/gearProfiencies";
-import { ProfiencySubClasses } from "../skills/proficiencySubClasses";
-import { ToolTypes } from "../inventory/toolTypes";
-import { Tools, Tool } from "../inventory/tools";
-import { OptionType } from "./optionType";
-import { ClassSkills, ClassSkill } from "../skills/classSkills";
+import { Abilities, Ability } from "../enums/abilities";
+import { GearProficiencies, GearProficiency } from "./gearProfiencies";
+import { ProfiencySubClasses } from "../enums/proficiencySubClasses";
+import { ToolTypes } from "../enums/toolTypes";
+import { Tools, Tool } from "./tools";
+import { OptionType } from "../enums/optionType";
+import { ClassSkills, ClassSkill } from "./classSkills";
 
 function getProfienciesBySubClass(subClass: ProfiencySubClasses) {
     let proficiencies = [];

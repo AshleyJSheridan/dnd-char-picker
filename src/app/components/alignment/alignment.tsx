@@ -1,10 +1,8 @@
 "use client";
 
-import { Alignments } from "./alignments";
+import { Alignments } from "../../enums/alignments";
 
 export default function Alignment({canShow, currentStep, setCurrentStep, alignment, setAlignment}) {
-    let canShowComponent = canShow('Alignment');
-
     function handleAlignmentSelection(alignmentSelection: string) {
         setAlignment(alignmentSelection);
     }
@@ -28,7 +26,7 @@ export default function Alignment({canShow, currentStep, setCurrentStep, alignme
         }); 
     }
 
-    if(!canShowComponent)
+    if(!canShow)
         return '';
 
     return (
