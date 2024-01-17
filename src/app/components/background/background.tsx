@@ -1,12 +1,20 @@
 "use client";
 
-export default function Background({canShow, charClass}) {
+import { Backgrounds } from "@/app/enums/backgrounds";
+
+export default function Background({canShow, charClass, background, setBackground}) {
+    const backgroundSelections = Backgrounds.map(background => 
+        <li key={background.id}>
+            {background.name}
+        </li>
+    );
+
     if(!canShow)
         return '';
 
     return (
-        <>
-            background
-        </>
+        <ul>
+            {backgroundSelections}
+        </ul>
     );
 };

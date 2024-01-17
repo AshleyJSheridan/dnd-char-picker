@@ -16,6 +16,7 @@ export default function Home() {
     const [race, setRace] = useState(null);
     const [alignment, setAlignment] = useState('True Neutral');
     const [charClass, setCharClass] = useState(null);
+    const [background, setBackground] = useState(null);
 
     function canShowComponent(navName: string) {
         let navItem;
@@ -68,6 +69,8 @@ export default function Home() {
                 <Background
                     canShow={canShowComponent('Background')}
                     charClass={charClass}
+                    background={background}
+                    setBackground={setBackground}
                 />
             </main>
         </>

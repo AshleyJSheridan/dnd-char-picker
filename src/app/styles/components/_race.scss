@@ -43,21 +43,6 @@
             font-weight: bold;
             padding: .25em;
         }
-
-        .sub-race {
-            border: 1px solid $light-grey;
-            padding: 1em;
-
-            .races {
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 1em;
-            }
-
-            .race {
-                display: block;
-            }
-        }
     }
 }
   
@@ -80,6 +65,23 @@
 
     h2 {
         margin-top: 0;
+    }
+
+    .sub-race {
+        background-color: $white;
+        border: 1px solid $light-grey;
+        margin-top: 1em;
+        padding: 1em;
+
+        .races {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 1em;
+        }
+
+        .race {
+            display: block;
+        }
     }
 }
 

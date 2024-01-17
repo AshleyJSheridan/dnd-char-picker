@@ -18,7 +18,7 @@ export interface Race {
     languages: Language[];
 };
 
-export const Races = [
+export const Races: Race[] = [
     { id: 1, name: 'Dwarf', maxAge: 350, maxHeight: 5, speed: 25, 
         subraces: [
             { id: 101, name: 'Hill Dwarf', traits: [Traits.ABILITY_WIS_MINOR, Traits.DWARVEN_TOUGHNESS] },
@@ -49,7 +49,8 @@ export const Races = [
         languages: [Languages.COMMON]
     },
     { id: 5, name: 'Dragonborn', maxAge: 80,  maxHeight: 7, speed: 30, 
-        traits: [Traits.SIZE_MEDIUM, Traits.ABILITY_STR, Traits.ABILITY_CHA_MINOR, Traits.DRACONIC_ANCESTRY, Traits.BREATH_WEAPON, Traits.DAMAGE_RESISTENCE]
+        traits: [Traits.SIZE_MEDIUM, Traits.ABILITY_STR, Traits.ABILITY_CHA_MINOR, Traits.DRACONIC_ANCESTRY, Traits.BREATH_WEAPON, Traits.DAMAGE_RESISTENCE],
+        languages: [Languages.COMMON, Languages.DRACONIC]
     },
     { id: 6, name: 'Gnome', maxAge: 450, maxHeight: 4, speed: 25, 
         subraces: [

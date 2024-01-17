@@ -13,10 +13,28 @@ export default function TraitList({traits, languages}) {
         );
     }
 
-    function getLanguageList(languages) {
+    function getLanguageBlock(languages) {
         if(!languages)
             return '';
 
+        return (
+            <>
+                <h3>Languages</h3>
+                <table className="traits-list">
+                    <thead>
+                        <tr>
+                            <th>Language</th><th>Typical Speakers</th><th>Script</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {getLanguageList(languages)}
+                    </tbody>
+                </table>
+            </>
+        )
+    }
+
+    function getLanguageList(languages) {
         return languages.map(language =>
             <tr key={crypto.randomUUID()}>
                 <td>{language.name}</td>
@@ -37,17 +55,7 @@ export default function TraitList({traits, languages}) {
                 {getList(traits)}
             </dl>
 
-            <h3>Languages</h3>
-            <table className="traits-list">
-                <thead>
-                    <tr>
-                        <th>Language</th><th>Typical Speakers</th><th>Script</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {getLanguageList(languages)}
-                </tbody>
-            </table>
+            {getLanguageBlock(languages)}
         </section>
     );
 }
