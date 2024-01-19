@@ -1,6 +1,6 @@
 "use client";
 
-import { CharClasses, CharClass, CharClass } from "../../repositories/charClasses";
+import { CharClasses, CharClass } from "../../repositories/charClasses";
 import ClassDetails from "./classDetails";
 import React, { useState } from "react";
 import ClassIcon from "./classIcon";
@@ -34,6 +34,19 @@ export default function CharClass({canShow, currentStep, setCurrentStep, charCla
         }); 
     }
 
+    function getClassDetailsModal() {
+        if(!selectedClass)
+            return '';
+
+        return (
+            <ClassDetails 
+                charClass={selectedClass}
+                setCharClass={setSelectedClass}
+                confirmCharClass={handleConfirmClassSelect}
+            />
+        );
+    }
+
     if(!canShow)
         return '';
 
@@ -44,7 +57,7 @@ export default function CharClass({canShow, currentStep, setCurrentStep, charCla
                     {getClassListContent()}
                 </ul>
             </section>
-            <ClassDetails charClass={selectedClass} setCharClass={setSelectedClass} confirmCharClass={handleConfirmClassSelect}/>
+            {getClassDetailsModal()}
         </>
     );
 }

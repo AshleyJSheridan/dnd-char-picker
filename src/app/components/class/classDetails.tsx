@@ -1,6 +1,21 @@
 import ClassIcon from "./classIcon";
+import React from "react";
 
 export default function ClassDetails({charClass, setCharClass, confirmCharClass}) {
+    React.useEffect(() => {
+        document.addEventListener("keydown", escFunction, false);
+
+        return () => {
+            document.removeEventListener("keydown", escFunction, false);
+        }
+    }, []);
+
+    function escFunction(event){
+        if (event.key === "Escape") {
+            handleCloseModal();
+        }
+    }
+
     function getReadableAbilitiesList(abilities: Array<{name: string, description: string}>) {
         return abilities.map(ability => 
             ability.name

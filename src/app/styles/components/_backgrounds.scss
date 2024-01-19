@@ -1,0 +1,57 @@
+.background-selection .background-list {
+    display: grid;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    grid-template-columns: repeat(5, 1fr);
+    margin: 0 auto;
+    width: 90%;   
+}
+
+.class-background {
+    cursor: pointer;
+    display: block;
+    border: 1px solid $light-grey;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+
+    &:hover {
+        background-color: $light-grey;
+    }
+}
+
+.background-proficiences-equipment {
+    margin-top: 1em;
+
+    dt {
+        display: block;
+        font-weight: bold;
+    }
+
+    dd {
+        margin-left: 1em;
+    }
+}
+
+.characteristics-block {
+    margin-top: 1em;
+    padding: 0 .5em 1em .5em;
+
+    legend {
+        font-style: italic;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-top: 1em;
+    }
+}
+
+.characteristics-block-selection {
+    display: flex;
+
+    select {
+        width: 35em;
+    }
+}

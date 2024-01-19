@@ -11,27 +11,27 @@ type Tools = Record<string, Tool>;
 export const Tools = {
     /* general kits */
     'HERBALISM_KIT' : { id: 'HERBALISM_KIT', name: 'Herbalism kit', type: ToolTypes.KIT },
-    'DISGUISE_KIT' : { id: 'DISGUISE_KIT', name: 'Herbalism kit', type: ToolTypes.KIT },
-    'FORGERY_KIT' : { id: 'FORGERY_KIT', name: 'Herbalism kit', type: ToolTypes.KIT },
-    'NAVIGATORS_TOOLS' : { id: 'NAVIGATORS_TOOLS', name: 'Herbalism kit', type: ToolTypes.KIT },
-    'POISONERS_KIT' : { id: 'POISONERS_KIT', name: 'Herbalism kit', type: ToolTypes.KIT },
-    'THIEVES_TOOLS' : { id: 'THIEVES_TOOLS', name: 'Herbalism kit', type: ToolTypes.KIT },
+    'DISGUISE_KIT' : { id: 'DISGUISE_KIT', name: 'Disguise kit', type: ToolTypes.KIT },
+    'FORGERY_KIT' : { id: 'FORGERY_KIT', name: 'Forgery kit', type: ToolTypes.KIT },
+    'NAVIGATORS_TOOLS' : { id: 'NAVIGATORS_TOOLS', name: 'Navigators tools', type: ToolTypes.KIT },
+    'POISONERS_KIT' : { id: 'POISONERS_KIT', name: 'Poisoners kit', type: ToolTypes.KIT },
+    'THIEVES_TOOLS' : { id: 'THIEVES_TOOLS', name: 'Thieves tools', type: ToolTypes.KIT },
 
     /* gaming sets */
-    'DICE_SET' : { id: 'DICE_SET', name: 'Herbalism kit', type: ToolTypes.GAMING },
-    'PLAYING_CARDS' : { id: 'PLAYING_CARDS', name: 'Herbalism kit', type: ToolTypes.GAMING },
+    'DICE_SET' : { id: 'DICE_SET', name: 'Dice set', type: ToolTypes.GAMING },
+    'PLAYING_CARDS' : { id: 'PLAYING_CARDS', name: 'Playing cards', type: ToolTypes.GAMING },
 
     /* musical instruments */
-    'BAGPIPES' : { id: 'BAGPIPES', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
-    'DRUM' : { id: 'DRUM', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
-    'DULCIMER' : { id: 'DULCIMER', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
-    'FLUTE' : { id: 'FLUTE', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
-    'LUTE' : { id: 'LUTE', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
-    'LYRE' : { id: 'LYRE', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
-    'HORN' : { id: 'HORN', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
-    'PAN_FLUTE' : { id: 'PAN_FLUTE', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
-    'SHAWM' : { id: 'SHAWM', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
-    'VIOL' : { id: 'VIOL', name: 'Herbalism kit', type: ToolTypes.INSTRUMENT },
+    'BAGPIPES' : { id: 'BAGPIPES', name: 'Bagpipes', type: ToolTypes.INSTRUMENT },
+    'DRUM' : { id: 'DRUM', name: 'Drum', type: ToolTypes.INSTRUMENT },
+    'DULCIMER' : { id: 'DULCIMER', name: 'Dulcimer', type: ToolTypes.INSTRUMENT },
+    'FLUTE' : { id: 'FLUTE', name: 'Flute', type: ToolTypes.INSTRUMENT },
+    'LUTE' : { id: 'LUTE', name: 'Lute', type: ToolTypes.INSTRUMENT },
+    'LYRE' : { id: 'LYRE', name: 'Lyre', type: ToolTypes.INSTRUMENT },
+    'HORN' : { id: 'HORN', name: 'Horn', type: ToolTypes.INSTRUMENT },
+    'PAN_FLUTE' : { id: 'PAN_FLUTE', name: 'Pan flute', type: ToolTypes.INSTRUMENT },
+    'SHAWM' : { id: 'SHAWM', name: 'Shawm', type: ToolTypes.INSTRUMENT },
+    'VIOL' : { id: 'VIOL', name: 'Viol', type: ToolTypes.INSTRUMENT },
 
     /* artisans tools */
     'ALCHEMISTS_SUPPLIES': { id: 'ALCHEMISTS_SUPPLIES', name: 'Alchemists supplies', type: ToolTypes.ARTISAN },

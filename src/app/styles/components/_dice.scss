@@ -1,0 +1,46 @@
+.dice {
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    height: 1.5em;
+    margin-left: .5em;
+    width: 1.5em;
+
+    .roll-label {
+        clip: rect(1px 1px 1px 1px);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+    }
+
+    .rolled-value {
+        margin-left: 2em;
+        user-select: none;
+    }
+
+    &.dice-d4 {
+        background-image: url(/img/dice/d4.png);
+    }
+
+    &.dice-d6 {
+        background-image: url(/img/dice/d6.png);
+    }
+
+    &.dice-d8 {
+        background-image: url(/img/dice/d8.png);
+    }
+
+    &.dice-d10 {
+        background-image: url(/img/dice/d10.png);
+    }
+
+    &.dice-d12 {
+        background-image: url(/img/dice/d12.png);
+    }
+
+    &.dice-d20 {
+        background-image: url(/img/dice/d20.png);
+    }
+}

@@ -1,10 +1,12 @@
 import { ProfiencySubClasses } from "../enums/proficiencySubClasses";
+import { Tool } from "./tools";
 
 export interface GearProficiency {
     id: string;
     name: string;
     subClass: ProfiencySubClasses;
     description: string;
+    tool?: Tool;
 };
 
 type GearProficiencies = Record<string, GearProficiency>;

@@ -204,7 +204,7 @@ export const ClassSkills = {
         id: 'SECOND_WIND', skillType: SkillType.SKILL, level: 2, name: 'Second Wind',
         description: '<p>You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level. Once you use this feature, you must finish a short or long rest before you can use it again.</p>' },
     'ACTION_SURGE_L2': {
-        id: 'ACTION_SURGE', skillType: SkillType.SKILL, level: 2, name: 'Action Surge',
+        id: 'ACTION_SURGE_L2', skillType: SkillType.SKILL, level: 2, name: 'Action Surge',
         description: '<p>Starting at 2nd level, you can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action.</p><p>Once you use this feature, you must finish a short or long rest before you can use it again.</p>' },
     'MARTIAL_ARCHTYPE': {
         id: 'MARTIAL_ARCHTYPE', skillType: SkillType.SKILL, level: 3, name: 'Martial Archetype',
@@ -219,7 +219,7 @@ export const ClassSkills = {
         id: 'INDOMNITABLE_L17', skillType: SkillType.SKILL, level: 17, name: 'Indomnitable',
         description: '<p>Beginning at 17th level, you can reroll two saving throws that you fail. If you do so, you must use the new roll, and you can’t use this feature again until you finish a long rest.</p>' },
     'ACTION_SURGE_L17': {
-        id: 'ACTION_SURGE', skillType: SkillType.SKILL, level: 17, name: 'Action Surge',
+        id: 'ACTION_SURGE_L17', skillType: SkillType.SKILL, level: 17, name: 'Action Surge',
         description: '<p>Starting at 17th level, you can use Action Surge twice before a rest, but only once on the same turn.</p>' },
 
     /** monk skills */
