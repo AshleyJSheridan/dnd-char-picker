@@ -11,8 +11,8 @@ export default function Race({canShow, gender, currentStep, setCurrentStep, race
     gender: number,
     currentStep: CurrentStep,
     setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>,
-    race: Race,
-    setRace: React.Dispatch<SetStateAction<Race>>
+    race: Race | null,
+    setRace: React.Dispatch<SetStateAction<Race|null>>
 }) {
     const raceSelections = Races.map(mainRace => 
         <li 

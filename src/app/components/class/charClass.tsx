@@ -10,10 +10,10 @@ export default function CharClass({canShow, currentStep, setCurrentStep, charCla
     canShow: boolean, 
     currentStep: CurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>,
-    charClass: CharClass,
-    setCharClass: React.Dispatch<SetStateAction<CharClass>>
+    charClass: CharClass  |null,
+    setCharClass: React.Dispatch<SetStateAction<CharClass|null>>
 }) {
-    let [selectedClass, setSelectedClass] = useState(null);
+    let [selectedClass, setSelectedClass] = useState<CharClass|null>(null);
 
     function getClassListContent() {
         return CharClasses.map(charClass => 

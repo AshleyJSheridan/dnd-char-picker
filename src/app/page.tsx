@@ -8,17 +8,13 @@ import Race from './components/pick-race/race';
 import Alignment from "./components/alignment/alignment";
 import CharClass from "./components/class/charClass";
 import Background from "./components/background/background";
-
-export interface CurrentStep {
-    current: number;
-    maxCompleted: number;
-}
+import { Race as CharRace } from "./repositories/races";
 
 export default function Home() {
     const [currentStep, setCurrentStep] = useState({current: 1, maxCompleted: 0});
 
     const [gender, setGender] = useState(0);
-    const [race, setRace] = useState(null);
+    const [race, setRace] = useState<CharRace|null>(null);
     const [alignment, setAlignment] = useState('True Neutral');
     const [charClass, setCharClass] = useState(null);
     const [background, setBackground] = useState(null);

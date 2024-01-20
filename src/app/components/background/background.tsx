@@ -7,7 +7,7 @@ import BackgroundDetails from "./backgroundDetails";
 export default function Background({canShow, background, setBackground}: {
     canShow: boolean, background: Background, setBackground: React.Dispatch<SetStateAction<Background|null>>
 }) {
-    let [selectedBackground, setSelectedBackground] = useState(null);
+    let [selectedBackground, setSelectedBackground] = useState<Background|null>(null);
 
     const backgroundSelections = Backgrounds.map(background => 
         <li 
@@ -35,7 +35,7 @@ export default function Background({canShow, background, setBackground}: {
         );
     }
 
-    function handleConfirmBackgroundSelect(background) {
+    function handleConfirmBackgroundSelect(background: Background) {
 
         //setBackground(background);
         /*setCurrentStep({

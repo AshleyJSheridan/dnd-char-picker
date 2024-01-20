@@ -17,8 +17,8 @@ export default function Characteristics({label, characteristics}: {label: string
         return label.replaceAll(/[ ']/g, '-').toLowerCase();
     }
 
-    function handleChange(value: string) {
-        setValue(parseInt(value));
+    function handleChange(value: number) {
+        setValue(value);
     }
 
     return (
@@ -31,7 +31,7 @@ export default function Characteristics({label, characteristics}: {label: string
                     id={getSafeLabel(label)} 
                     name={getSafeLabel(label)} 
                     value={value}
-                    onChange={event => handleChange(event.target.value)}
+                    onChange={event => handleChange(parseInt(event.target.value))}
                 >
                     {getCharacteristicsOptions(characteristics)}
                 </select>
