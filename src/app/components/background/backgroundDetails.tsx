@@ -1,8 +1,13 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 import { formatMoney } from "@/app/helpers/moneyFormatter";
 import Characteristics from "./characteristics";
+import { Background } from "@/app/enums/backgrounds";
+import { Skill } from "@/app/enums/skills";
+import { InventoryItem } from "@/app/enums/inventory";
 
-export default function BackgroundDetails({background, setSelectedBackground}) {
+export default function BackgroundDetails({background, setSelectedBackground}: {
+    background: Background, setSelectedBackground: React.Dispatch<SetStateAction<Background|null>>
+}) {
     React.useEffect(() => {
         document.addEventListener("keydown", escFunction, false);
 
@@ -11,7 +16,7 @@ export default function BackgroundDetails({background, setSelectedBackground}) {
         }
     }, []);
 
-    function escFunction(event){
+    function escFunction(event: KeyboardEvent){
         if (event.key === "Escape") {
             handleCloseModal();
         }
@@ -25,16 +30,16 @@ export default function BackgroundDetails({background, setSelectedBackground}) {
         //confirmCharClass(charClass);
     }
 
-    function getSkillProficiencies(proficiencies) {
+    function getSkillProficiencies(proficiencies: Skill[]) {
         return proficiencies.map(proficiency => `${proficiency.name} (${proficiency.primaryAbility.id})`).join(', ');
     }
 
-    function getEquipmentList(equipment) {
+    function getEquipmentList(equipment: InventoryItem[]) {
         return equipment.map(gear => gear.name).join(', ');
     }
 
-    function getCharacteristicBlock(label, characteristics) {
-        if(!label)
+    function getCharacteristicBlock(label: string | undefined, characteristics: string[] | undefined) {
+        if(!label || !characteristics)
             return '';
 
         return (

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
-export default function DiceRoll({sides, handleResult}) {
+export default function DiceRoll({sides, handleResult}: {sides: number, handleResult: React.Dispatch<SetStateAction<number>>}) {
     let [randomNumber, setRandomNumber] = useState(null);
 
     function generateRandomNumer() {

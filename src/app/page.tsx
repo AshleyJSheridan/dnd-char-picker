@@ -9,6 +9,11 @@ import Alignment from "./components/alignment/alignment";
 import CharClass from "./components/class/charClass";
 import Background from "./components/background/background";
 
+export interface CurrentStep {
+    current: number;
+    maxCompleted: number;
+}
+
 export default function Home() {
     const [currentStep, setCurrentStep] = useState({current: 1, maxCompleted: 0});
 
@@ -68,7 +73,6 @@ export default function Home() {
                 />
                 <Background
                     canShow={canShowComponent('Background')}
-                    charClass={charClass}
                     background={background}
                     setBackground={setBackground}
                 />

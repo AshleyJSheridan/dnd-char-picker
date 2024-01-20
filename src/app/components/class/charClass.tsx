@@ -2,10 +2,17 @@
 
 import { CharClasses, CharClass } from "../../repositories/charClasses";
 import ClassDetails from "./classDetails";
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import ClassIcon from "./classIcon";
+import { CurrentStep } from "@/app/interfaces/CurrentStep";
 
-export default function CharClass({canShow, currentStep, setCurrentStep, charClass, setCharClass}) {
+export default function CharClass({canShow, currentStep, setCurrentStep, charClass, setCharClass}: {
+    canShow: boolean, 
+    currentStep: CurrentStep, 
+    setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>,
+    charClass: CharClass,
+    setCharClass: React.Dispatch<SetStateAction<CharClass>>
+}) {
     let [selectedClass, setSelectedClass] = useState(null);
 
     function getClassListContent() {

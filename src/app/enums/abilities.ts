@@ -1,5 +1,6 @@
 export interface Ability {
-    id: '',  name: string;
+    id: '',
+    name: string;
     description: string;
 }
 

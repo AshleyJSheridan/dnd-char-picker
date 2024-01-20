@@ -1,4 +1,4 @@
-export default function RaceIntro({raceName}) {
+export default function RaceIntro({raceName}: {raceName: string}) {
     function getRaceIntro() {
         switch(raceName) {
             case 'Dwarf':

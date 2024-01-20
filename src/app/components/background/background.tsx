@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import { Background, Background, Backgrounds } from "@/app/enums/backgrounds";
+import React, { SetStateAction, useState } from "react";
+import { Background, Backgrounds } from "@/app/enums/backgrounds";
 import BackgroundDetails from "./backgroundDetails";
 
-export default function Background({canShow, charClass, background, setBackground}) {
+export default function Background({canShow, background, setBackground}: {
+    canShow: boolean, background: Background, setBackground: React.Dispatch<SetStateAction<Background|null>>
+}) {
     let [selectedBackground, setSelectedBackground] = useState(null);
 
     const backgroundSelections = Backgrounds.map(background => 
@@ -31,6 +33,16 @@ export default function Background({canShow, charClass, background, setBackgroun
                 setSelectedBackground={setSelectedBackground}
             />
         );
+    }
+
+    function handleConfirmBackgroundSelect(background) {
+
+        //setBackground(background);
+        /*setCurrentStep({
+            ...currentStep,
+            current: currentStep.current + 1,
+            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
+        });*/
     }
 
     if(!canShow)

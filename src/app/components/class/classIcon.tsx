@@ -1,4 +1,4 @@
-export default function ClassIcon({charClassName}) {
+export default function ClassIcon({charClassName}: {charClassName: string}) {
     function getClassIconImage(charClassName: string) {
         return `/img/class icons/Class Icon - ${charClassName}.svg`;
     }

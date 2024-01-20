@@ -1,11 +1,19 @@
 "use client";
 
-import React from "react";
-import { Races } from "../../repositories/races";
+import React, { SetStateAction } from "react";
+import { Race, Races, SubRace } from "../../repositories/races";
 import TraitList from "./traitList";
 import RaceIntro from "./raceIntro";
+import { CurrentStep } from "@/app/interfaces/CurrentStep";
 
-export default function Race({canShow, gender, currentStep, setCurrentStep, race, setRace}) {
+export default function Race({canShow, gender, currentStep, setCurrentStep, race, setRace}: {
+    canShow: boolean,
+    gender: number,
+    currentStep: CurrentStep,
+    setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>,
+    race: Race,
+    setRace: React.Dispatch<SetStateAction<Race>>
+}) {
     const raceSelections = Races.map(mainRace => 
         <li 
             key={mainRace.id} 
@@ -32,11 +40,11 @@ export default function Race({canShow, gender, currentStep, setCurrentStep, race
         }
     }
 
-    function handleRaceSelection(race) {
+    function handleRaceSelection(race: Race) {
         setRace(race);
     }
 
-    function handleSubraceSelection(subrace) {
+    function handleSubraceSelection(subrace: SubRace) {
         setRace({
             ...race,
             subrace: subrace

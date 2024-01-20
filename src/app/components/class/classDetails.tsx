@@ -1,7 +1,12 @@
+import { CharClass } from "@/app/repositories/charClasses";
 import ClassIcon from "./classIcon";
-import React from "react";
+import React, { SetStateAction } from "react";
+import { GearProficiency } from "@/app/repositories/gearProfiencies";
+import { ClassSkill } from "@/app/repositories/classSkills";
 
-export default function ClassDetails({charClass, setCharClass, confirmCharClass}) {
+export default function ClassDetails({charClass, setCharClass, confirmCharClass}: {
+    charClass: CharClass, setCharClass: React.Dispatch<SetStateAction<CharClass>>, confirmCharClass: React.Dispatch<SetStateAction<CharClass>>
+}, ) {
     React.useEffect(() => {
         document.addEventListener("keydown", escFunction, false);
 
@@ -10,10 +15,12 @@ export default function ClassDetails({charClass, setCharClass, confirmCharClass}
         }
     }, []);
 
-    function escFunction(event){
+    function escFunction(event: KeyboardEvent){
         if (event.key === "Escape") {
             handleCloseModal();
         }
+
+        return false;
     }
 
     function getReadableAbilitiesList(abilities: Array<{name: string, description: string}>) {
@@ -22,7 +29,7 @@ export default function ClassDetails({charClass, setCharClass, confirmCharClass}
         ).join(' & ');
     }
 
-    function getReadableProficienciesList(proficiencies) {
+    function getReadableProficienciesList(proficiencies: GearProficiency[]) {
         if(proficiencies.length === 0)
             return (<li>None</li>);
 
@@ -33,7 +40,7 @@ export default function ClassDetails({charClass, setCharClass, confirmCharClass}
         );
     }
 
-    function getSkillsBlocks(skills) {
+    function getSkillsBlocks(skills: ClassSkill[]) {
         return skills.map(skill =>
             <details key={skill.id}>
                 <summary>

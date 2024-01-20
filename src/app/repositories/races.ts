@@ -14,6 +14,7 @@ export interface Race {
     maxHeight: number;
     speed: number;
     subraces?: SubRace[];
+    subrace?: SubRace;
     traits: Trait[];
     languages: Language[];
 };

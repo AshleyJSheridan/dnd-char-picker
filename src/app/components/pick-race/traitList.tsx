@@ -1,7 +1,9 @@
+import { Language } from "@/app/enums/languages";
+import { Trait } from "@/app/repositories/traits";
 import React from "react";
 
-export default function TraitList({traits, languages}) {
-    function getList(traits) {
+export default function TraitList({traits, languages}: {traits: Trait[], languages: Language[]}) {
+    function getList(traits: Trait[]) {
         if(!traits)
             return '';
 
@@ -13,7 +15,7 @@ export default function TraitList({traits, languages}) {
         );
     }
 
-    function getLanguageBlock(languages) {
+    function getLanguageBlock(languages: Language[]) {
         if(!languages)
             return '';
 
@@ -34,7 +36,7 @@ export default function TraitList({traits, languages}) {
         )
     }
 
-    function getLanguageList(languages) {
+    function getLanguageList(languages: Language[]) {
         return languages.map(language =>
             <tr key={crypto.randomUUID()}>
                 <td>{language.name}</td>

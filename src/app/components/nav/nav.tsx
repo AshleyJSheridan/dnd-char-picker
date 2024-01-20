@@ -1,8 +1,9 @@
 "use client";
 
+import { CurrentStep } from "@/app/interfaces/CurrentStep";
 import { NavItems } from "../../enums/navItems";
 
-export default function Nav({currentStep, setCurrentStep}) {
+export default function Nav({currentStep, setCurrentStep}: {currentStep: CurrentStep, setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>}) {
 
     const navContent = NavItems.map(nav =>
         <li key={nav.id} className={(currentStep.current === nav.id) ? 'active' : ''}>

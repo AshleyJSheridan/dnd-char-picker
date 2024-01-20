@@ -1,8 +1,18 @@
 "use client";
 
+import { CurrentStep } from "@/app/interfaces/CurrentStep";
 import { Alignments } from "../../enums/alignments";
+import { SetStateAction } from "react";
 
-export default function Alignment({canShow, currentStep, setCurrentStep, alignment, setAlignment}) {
+export default function Alignment({canShow, currentStep, setCurrentStep, alignment, setAlignment}: 
+    {
+        canShow: boolean, 
+        currentStep: CurrentStep, 
+        setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>, 
+        alignment: string, 
+        setAlignment: React.Dispatch<SetStateAction<string>>
+    }) {
+
     function handleAlignmentSelection(alignmentSelection: string) {
         setAlignment(alignmentSelection);
     }
