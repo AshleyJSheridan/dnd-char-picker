@@ -91,7 +91,7 @@ export default function Race({canShow, gender, currentStep, setCurrentStep, race
                 <section className="race-main-details">
                     <RaceIntro raceName={race?.subrace?.name}></RaceIntro>
 
-                    <TraitList traits={race?.subrace?.traits} languages={null}></TraitList>
+                    <TraitList traits={race?.subrace?.traits} languages={[]}></TraitList>
                 </section>
             </section>
         );

@@ -5,7 +5,9 @@ import { GearProficiency } from "@/app/repositories/gearProfiencies";
 import { ClassSkill } from "@/app/repositories/classSkills";
 
 export default function ClassDetails({charClass, setCharClass, confirmCharClass}: {
-    charClass: CharClass, setCharClass: React.Dispatch<SetStateAction<CharClass>>, confirmCharClass: React.Dispatch<SetStateAction<CharClass>>
+    charClass: CharClass | null, 
+    setCharClass: React.Dispatch<SetStateAction<CharClass|null>>, 
+    confirmCharClass: React.Dispatch<SetStateAction<CharClass|null>>
 }, ) {
     React.useEffect(() => {
         document.addEventListener("keydown", escFunction, false);

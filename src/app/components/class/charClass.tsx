@@ -32,7 +32,7 @@ export default function CharClass({canShow, currentStep, setCurrentStep, charCla
         setSelectedClass(charClass);
     }
 
-    function handleConfirmClassSelect(charClass: CharClass) {
+    function handleConfirmClassSelect(charClass: CharClass | null) {
         setCharClass(charClass);
         setCurrentStep({
             ...currentStep,

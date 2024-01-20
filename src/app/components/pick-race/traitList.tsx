@@ -2,7 +2,7 @@ import { Language } from "@/app/enums/languages";
 import { Trait } from "@/app/repositories/traits";
 import React from "react";
 
-export default function TraitList({traits, languages}: {traits: Trait[], languages: Language[]}) {
+export default function TraitList({traits, languages}: {traits?: Trait[], languages?: Language[]}) {
     function getList(traits: Trait[]) {
         if(!traits)
             return '';
@@ -15,7 +15,7 @@ export default function TraitList({traits, languages}: {traits: Trait[], languag
         );
     }
 
-    function getLanguageBlock(languages: Language[]) {
+    function getLanguageBlock(languages?: Language[]) {
         if(!languages)
             return '';
 

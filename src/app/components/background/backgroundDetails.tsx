@@ -16,6 +16,8 @@ export default function BackgroundDetails({background, setSelectedBackground}: {
         }
     }, []);
 
+    
+
     function escFunction(event: KeyboardEvent){
         if (event.key === "Escape") {
             handleCloseModal();
