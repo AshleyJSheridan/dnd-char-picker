@@ -2,9 +2,11 @@
 
 import { CurrentStep } from "@/app/interfaces/CurrentStep";
 import { NavItems } from "../../enums/navItems";
+import { SetStateAction } from "react";
 
-export default function Nav({currentStep, setCurrentStep}: {currentStep: CurrentStep, setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>}) {
-
+export default function Nav({currentStep, setCurrentStep}: {
+    currentStep: CurrentStep, setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>
+}) {
     const navContent = NavItems.map(nav =>
         <li key={nav.id} className={(currentStep.current === nav.id) ? 'active' : ''}>
             <button type="button" onClick={() => jumpToCharSection(nav.id)}>

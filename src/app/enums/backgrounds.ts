@@ -23,6 +23,7 @@ export interface Background {
     startingGold: number;
     suggestedCharacteristics: Characteristics;
     characterStyles?: CharacterStyles;
+    selectedCharacteristics?: {}
 }
 
 type Backgrounds = Record<string, Background>;

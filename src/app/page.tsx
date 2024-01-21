@@ -69,6 +69,8 @@ export default function Home() {
                 />
                 <Background
                     canShow={canShowComponent('Background')}
+                    currentStep={currentStep} 
+                    setCurrentStep={setCurrentStep} 
                     background={background}
                     setBackground={setBackground}
                 />

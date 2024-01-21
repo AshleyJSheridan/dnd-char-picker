@@ -1,12 +1,14 @@
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useState } from "react";
 import { formatMoney } from "@/app/helpers/moneyFormatter";
 import Characteristics from "./characteristics";
 import { Background } from "@/app/enums/backgrounds";
 import { Skill } from "@/app/enums/skills";
 import { InventoryItem } from "@/app/enums/inventory";
 
-export default function BackgroundDetails({background, setSelectedBackground}: {
-    background: Background, setSelectedBackground: React.Dispatch<SetStateAction<Background|null>>
+export default function BackgroundDetails({background, setSelectedBackground, confirmBackground}: {
+    background: Background, 
+    setSelectedBackground: React.Dispatch<SetStateAction<Background|null>>,
+    confirmBackground: React.Dispatch<SetStateAction<Background>>
 }) {
     React.useEffect(() => {
         document.addEventListener("keydown", escFunction, false);
@@ -16,7 +18,7 @@ export default function BackgroundDetails({background, setSelectedBackground}: {
         }
     }, []);
 
-    
+    const [characteristics, setCharacteristics] = useState<any>({});
 
     function escFunction(event: KeyboardEvent){
         if (event.key === "Escape") {
@@ -29,7 +31,10 @@ export default function BackgroundDetails({background, setSelectedBackground}: {
     }
 
     function next() {
-        //confirmCharClass(charClass);
+        let selectedBackground = structuredClone(background);
+        selectedBackground.selectedCharacteristics = characteristics;
+
+        confirmBackground(selectedBackground);        
     }
 
     function getSkillProficiencies(proficiencies: Skill[]) {
@@ -45,8 +50,12 @@ export default function BackgroundDetails({background, setSelectedBackground}: {
             return '';
 
         return (
-            <Characteristics label={label} characteristics={characteristics}/>
+            <Characteristics label={label} characteristics={characteristics} handleCharacteristicChange={handleCharacteristicChange}/>
         );
+    }
+
+    function handleCharacteristicChange(details: any) {
+        characteristics[details.key] = details;
     }
 
     if(!background)
@@ -85,6 +94,7 @@ export default function BackgroundDetails({background, setSelectedBackground}: {
                         <fieldset className="characteristics-block">
                             <legend>Click dice to randomly select from the options.</legend>
 
+                            {/* this is only shown if a background has such a character style */}
                             {getCharacteristicBlock(background.characterStyles?.label, background.characterStyles?.styles)}
 
                             {getCharacteristicBlock('Personality Trait', background.suggestedCharacteristics.personalityTraits)}

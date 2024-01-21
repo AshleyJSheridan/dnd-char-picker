@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import DiceRoll from "../diceRoll/diceRoll";
 import { Characteristics } from "@/app/enums/backgrounds";
+import React from "react";
 
-export default function Characteristics({label, characteristics}: {label: string, characteristics: string[]}) {
+export default function Characteristics({label, characteristics, handleCharacteristicChange}: {
+    label: string, characteristics: string[], handleCharacteristicChange: React.Dispatch<SetStateAction<any>>
+}) {
+    React.useEffect(() => {
+        handleCharacteristicChange({key: getSafeLabel(label), label: label, value: value});
+    }, []);
+    
     const [value, setValue] = useState(0);
 
     function getCharacteristicsOptions(options: string[]) {
@@ -19,6 +26,7 @@ export default function Characteristics({label, characteristics}: {label: string
 
     function handleChange(value: number) {
         setValue(value);
+        handleCharacteristicChange({key: getSafeLabel(label), label: label, value: value});
     }
 
     return (

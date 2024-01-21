@@ -3,9 +3,14 @@
 import React, { SetStateAction, useState } from "react";
 import { Background, Backgrounds } from "@/app/enums/backgrounds";
 import BackgroundDetails from "./backgroundDetails";
+import { CurrentStep } from "@/app/interfaces/CurrentStep";
 
-export default function Background({canShow, background, setBackground}: {
-    canShow: boolean, background: Background, setBackground: React.Dispatch<SetStateAction<Background|null>>
+export default function Background({canShow, currentStep, setCurrentStep, background, setBackground}: {
+    canShow: boolean,
+    currentStep: CurrentStep, 
+    setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>,
+    background: Background, 
+    setBackground: React.Dispatch<SetStateAction<Background|null>>
 }) {
     let [selectedBackground, setSelectedBackground] = useState<Background|null>(null);
 
@@ -31,18 +36,18 @@ export default function Background({canShow, background, setBackground}: {
             <BackgroundDetails
                 background={selectedBackground}
                 setSelectedBackground={setSelectedBackground}
+                confirmBackground={handleConfirmBackgroundSelect}
             />
         );
     }
 
     function handleConfirmBackgroundSelect(background: Background) {
-
-        //setBackground(background);
-        /*setCurrentStep({
+        setBackground(background);
+        setCurrentStep({
             ...currentStep,
             current: currentStep.current + 1,
             maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        });*/
+        });
     }
 
     if(!canShow)

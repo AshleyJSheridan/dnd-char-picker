@@ -49,9 +49,12 @@
 }
 
 .characteristics-block-selection {
+    align-items: center;
     display: flex;
 
     select {
-        width: 35em;
+        font-size: 100%;
+        padding: .5em;
+        width: 30em;
     }
 }
