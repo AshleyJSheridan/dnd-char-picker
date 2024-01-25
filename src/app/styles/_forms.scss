@@ -15,7 +15,28 @@
     }
 }
 
+.button {
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: .75em;
+    width: 10em;
+
+    &.button-primary {
+        background-color: $green;
+        color: $white;
+    }
+
+    &:hover {
+        opacity: .75;
+    }
+}
+
 button:disabled {
     display: none;
 }
-  
+
+select {
+    font-size: 100%;
+    padding: .5em;
+}

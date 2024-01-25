@@ -1,0 +1,112 @@
+.stats-selection {
+    padding: 0 1em;
+
+
+}
+
+.stats-roll-buttons .button {
+    margin-right: .5em;
+}
+
+.stats-roll-blocks {
+    border: 1px solid $light-grey;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(6, 1fr);
+    margin-top: 1em;
+    padding: 1em;
+}
+
+.stats-roll-block {
+    border: 1px solid $light-grey;
+
+    h4 {
+        text-align: center;
+    }
+
+    .dice-rolls {
+        display: grid;
+        grid-gap: .25em;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .dice-roll {
+        background-color: $light-green;
+        border: 1px solid $light-grey;
+        border-radius: 5px;
+        display: inline-block;
+        padding: .25em .5em;
+        position: relative;
+        text-indent: -999em;
+
+        &.dice-roll-throw {
+            background-color: $light-red;
+        }
+
+        &:after {
+            display: inline-block;
+            font-size: 200%;
+            left: 0;
+            line-height: 90%;
+            position: absolute;
+            text-align: center;
+            text-indent: 0;
+            top: 0;
+            width: 100%;
+        }
+
+        &.dice-roll-1:after {
+            content: "⚀";
+        }
+
+        &.dice-roll-2:after {
+            content: "⚁";
+        }
+
+        &.dice-roll-3:after {
+            content: "⚂";
+        }
+
+        &.dice-roll-4:after {
+            content: "⚃";
+        }
+
+        &.dice-roll-5:after {
+            content: "⚄";
+        }
+
+        &.dice-roll-6:after {
+            content: "⚅";
+        }
+    }
+
+    .dice-roll-total {
+        font-size: 150%;
+        font-weight: bold;
+        margin-top: .5em;
+        text-align: center;
+    }
+
+    select {
+        width: 100%;
+    }
+}
+
+.stat-modifier-tables {
+    border: 1px solid $light-grey;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 1em;
+    padding: 1em;
+
+    thead tr:last-child {
+        background-color: $white;
+        border: 1px solid $black;
+        color: $black;
+    }
+
+    tbody th {
+        text-align: left;
+    }
+}

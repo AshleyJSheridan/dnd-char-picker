@@ -16,8 +16,6 @@ export default function Nav({currentStep, setCurrentStep}: {
     );
 
     function jumpToCharSection(section: number) {
-        console.log(section, currentStep, section === currentStep.current, section > (currentStep.maxCompleted + 1))
-
         if(section === currentStep.current || section > (currentStep.maxCompleted + 1))
             return null;
 

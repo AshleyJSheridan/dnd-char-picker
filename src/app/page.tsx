@@ -9,6 +9,8 @@ import Alignment from "./components/alignment/alignment";
 import CharClass from "./components/class/charClass";
 import Background from "./components/background/background";
 import { Race as CharRace } from "./repositories/races";
+import Level from "./components/level/level";
+import Stats from "./components/stats/stats";
 
 export default function Home() {
     const [currentStep, setCurrentStep] = useState({current: 1, maxCompleted: 0});
@@ -18,6 +20,8 @@ export default function Home() {
     const [alignment, setAlignment] = useState('True Neutral');
     const [charClass, setCharClass] = useState(null);
     const [background, setBackground] = useState(null);
+    const [level, setLevel] = useState(1);
+    const [stats, setStats] = useState({});
 
     function canShowComponent(navName: string) {
         let navItem;
@@ -73,6 +77,21 @@ export default function Home() {
                     setCurrentStep={setCurrentStep} 
                     background={background}
                     setBackground={setBackground}
+                />
+                <Level
+                    canShow={canShowComponent('Level')}
+                    currentStep={currentStep} 
+                    setCurrentStep={setCurrentStep} 
+                    level={level}
+                    setLevel={setLevel}
+                />
+                <Stats
+                    canShow={canShowComponent('Stats')}
+                    currentStep={currentStep} 
+                    setCurrentStep={setCurrentStep} 
+                    race={race}
+                    stats={level}
+                    setStats={setStats}
                 />
             </main>
         </>

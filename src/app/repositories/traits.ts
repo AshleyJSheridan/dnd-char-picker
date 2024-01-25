@@ -1,6 +1,10 @@
+import { Abilities, Ability } from "../enums/abilities";
+
 export interface Trait {
     name: string;
     description: string;
+    abilities?: Ability[];
+    abilityIncrease?: number;
 }
 
 type Traits = Record<string, Trait>;
@@ -12,15 +16,15 @@ export const Traits = {
     'SIZE_LARGE': { name: 'Large size', description: 'Larger target, probably more likely to be hit.' },
 
     // ability traits
-    'ABILITY_CON': { name: 'Ability score increase', description: 'Increases Constitution score by 2' },
-    'ABILITY_STR': { name: 'Ability score increase', description: 'Increases Strength score by 2' },
-    'ABILITY_DEX': { name: 'Ability score increase', description: 'Increases Dexterity score by 2' },
-    'ABILITY_WIS_MINOR': { name: 'Ability score increase', description: 'Increases Wisdom score by 1' },
-    'ABILITY_INT_MINOR': { name: 'Ability score increase', description: 'Increases Intelligence score by 1' },
-    'ABILITY_CHA_MINOR': { name: 'Ability score increase', description: 'Increases Charisma score by 1' },
-    'ABILITY_CON_MINOR': { name: 'Ability score increase', description: 'Increases Constitution score by 1' },
-    'ABILITY_DEX_MINOR': { name: 'Ability score increase', description: 'Increases Dexterity score by 1' },
-    'ABILITY_INCREASE': { name: 'Ability score increase', description: 'All ability scores increase by 1.' },
+    'ABILITY_CON': { name: 'Ability score increase', description: 'Increases Constitution score by 2', abilityIncrease: 2, abilities: [Abilities.CON] },
+    'ABILITY_STR': { name: 'Ability score increase', description: 'Increases Strength score by 2', abilityIncrease: 2, abilities: [Abilities.STR] },
+    'ABILITY_DEX': { name: 'Ability score increase', description: 'Increases Dexterity score by 2', abilityIncrease: 2, abilities: [Abilities.DEX] },
+    'ABILITY_WIS_MINOR': { name: 'Ability score increase', description: 'Increases Wisdom score by 1', abilityIncrease: 1, abilities: [Abilities.WIS] },
+    'ABILITY_INT_MINOR': { name: 'Ability score increase', description: 'Increases Intelligence score by 1', abilityIncrease: 1, abilities: [Abilities.INT] },
+    'ABILITY_CHA_MINOR': { name: 'Ability score increase', description: 'Increases Charisma score by 1', abilityIncrease: 1, abilities: [Abilities.CHA] },
+    'ABILITY_CON_MINOR': { name: 'Ability score increase', description: 'Increases Constitution score by 1', abilityIncrease: 1, abilities: [Abilities.CON] },
+    'ABILITY_DEX_MINOR': { name: 'Ability score increase', description: 'Increases Dexterity score by 1', abilityIncrease: 1, abilities: [Abilities.DEX] },
+    'ABILITY_INCREASE': { name: 'Ability score increase', description: 'All ability scores increase by 1.', abilityIncrease: 1, abilities: [Abilities.CHA, Abilities.CON, Abilities.DEX, Abilities.INT, Abilities.STR, Abilities.WIS] },
 
     // general traits
     'DARKVISION': { name: 'Darkvision', description: 'Can see in dim light within 60 feet, and in darkness as if it were dim light.' },
