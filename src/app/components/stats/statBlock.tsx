@@ -1,10 +1,11 @@
 import { SetStateAction } from "react";
 import { Abilities } from "@/app/enums/abilities";
 
-export default function StatBlock({roll, statRolls, handleStatOptionChange}: {
+export default function StatBlock({roll, statRolls, handleStatOptionChange, value}: {
     roll: number,
     statRolls: number[][],
-    handleStatOptionChange: React.Dispatch<SetStateAction<any>>
+    handleStatOptionChange: React.Dispatch<SetStateAction<any>>,
+    value: string
 }) {
     function getStatsOptions() {
         const abilities = Object.entries(Abilities).map(ability => ability[0]);
@@ -29,7 +30,10 @@ export default function StatBlock({roll, statRolls, handleStatOptionChange}: {
             </div>
             <div className="dice-roll-total">{getRollsTotal(statRolls[roll])}</div>
 
-            <select onChange={event => handleStatOptionChange({statBlock: roll, selectedStat: event.target.value})}>
+            <select 
+                onChange={event => handleStatOptionChange({statBlock: roll, selectedStat: event.target.value})}
+                value={value}
+            >
                 <option>-</option>
                 {getStatsOptions()}
             </select>

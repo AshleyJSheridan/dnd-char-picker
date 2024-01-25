@@ -33,11 +33,15 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, stats
     }
 
     function handleStatOptionChange(updateDetails: IStatsOptionChange) {
+        // if the stat has already been selected, force it back to no selection
+        if(updateDetails.selectedStat !== '-' && assignedStats.includes(updateDetails.selectedStat)) {
+            updateDetails.selectedStat = '-';
+        }
+
         let newAssignedStats = assignedStats;
         newAssignedStats[updateDetails.statBlock] = updateDetails.selectedStat;
 
         setAssignedStats([...newAssignedStats]);
-        console.log(assignedStats);
     }
 
     function clearStatDice() {
@@ -96,12 +100,12 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, stats
                 </div>
 
                 <div className="stats-roll-blocks">
-                    <StatBlock roll={0} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange}/>
-                    <StatBlock roll={1} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange}/>
-                    <StatBlock roll={2} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange}/>
-                    <StatBlock roll={3} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange}/>
-                    <StatBlock roll={4} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange}/>
-                    <StatBlock roll={5} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange}/>
+                    <StatBlock roll={0} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange} value={assignedStats[0]}/>
+                    <StatBlock roll={1} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange} value={assignedStats[1]}/>
+                    <StatBlock roll={2} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange} value={assignedStats[2]}/>
+                    <StatBlock roll={3} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange} value={assignedStats[3]}/>
+                    <StatBlock roll={4} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange} value={assignedStats[4]}/>
+                    <StatBlock roll={5} statRolls={statRolls} handleStatOptionChange={handleStatOptionChange} value={assignedStats[5]}/>
                 </div>
             </section>
 
