@@ -4,13 +4,13 @@ import React, { SetStateAction } from "react";
 import { Race, Races, SubRace } from "../../repositories/races";
 import TraitList from "./traitList";
 import RaceIntro from "./raceIntro";
-import { CurrentStep } from "@/app/interfaces/CurrentStep";
+import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 
 export default function Race({canShow, gender, currentStep, setCurrentStep, race, setRace}: {
     canShow: boolean,
     gender: number,
-    currentStep: CurrentStep,
-    setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>,
+    currentStep: ICurrentStep,
+    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
     race: Race | null,
     setRace: React.Dispatch<SetStateAction<Race|null>>
 }) {

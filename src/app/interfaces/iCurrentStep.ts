@@ -1,4 +1,4 @@
-export interface CurrentStep {
+export interface ICurrentStep {
     current: number;
     maxCompleted: number;
 }

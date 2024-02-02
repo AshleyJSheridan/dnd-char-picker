@@ -1,14 +1,14 @@
 "use client";
 
-import { CurrentStep } from "@/app/interfaces/CurrentStep";
+import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { Alignments } from "../../enums/alignments";
 import { SetStateAction } from "react";
 
 export default function Alignment({canShow, currentStep, setCurrentStep, alignment, setAlignment}: 
     {
         canShow: boolean, 
-        currentStep: CurrentStep, 
-        setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>, 
+        currentStep: ICurrentStep, 
+        setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>, 
         alignment: string, 
         setAlignment: React.Dispatch<SetStateAction<string>>
     }) {

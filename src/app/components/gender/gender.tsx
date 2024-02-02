@@ -1,14 +1,14 @@
 "use client";
 
-import { CurrentStep } from "@/app/interfaces/CurrentStep";
+import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { SetStateAction } from "react";
 
 export default function Gender({canShow, gender, setGender, currentStep, setCurrentStep}: {
     canShow: boolean, 
     gender: number, 
     setGender: React.Dispatch<SetStateAction<number>>,
-    currentStep: CurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>
+    currentStep: ICurrentStep, 
+    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>
 }) {
     function handleGenderSelection(genderSelection: number) {
         setGender(genderSelection);

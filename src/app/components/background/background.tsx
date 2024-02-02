@@ -3,12 +3,12 @@
 import React, { SetStateAction, useState } from "react";
 import { Background, Backgrounds } from "@/app/enums/backgrounds";
 import BackgroundDetails from "./backgroundDetails";
-import { CurrentStep } from "@/app/interfaces/CurrentStep";
+import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 
 export default function Background({canShow, currentStep, setCurrentStep, background, setBackground}: {
     canShow: boolean,
-    currentStep: CurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>,
+    currentStep: ICurrentStep, 
+    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
     background: Background, 
     setBackground: React.Dispatch<SetStateAction<Background|null>>
 }) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { CurrentStep } from "@/app/interfaces/CurrentStep";
+import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { SetStateAction, useState } from "react";
 import React from "react";
 import StatBlock from "./statBlock";
@@ -11,8 +11,8 @@ import { Race } from "@/app/repositories/races";
 
 export default function Stats({canShow, currentStep, setCurrentStep, race, stats, setStats}: {
     canShow: boolean,
-    currentStep: CurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<CurrentStep>>,
+    currentStep: ICurrentStep, 
+    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
     race: Race | null;
     stats: any,
     setStats: React.Dispatch<SetStateAction<any>>
@@ -24,12 +24,23 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, stats
     const dicePerStat = 4;
 
     function next() {
-        //setLevel(fixedLevel)
-        /*setCurrentStep({
-            ...currentStep,
-            current: currentStep.current + 1,
-            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        }); */
+        if(!assignedStats.includes('-')) {
+            let stats = [
+                { ability: Abilities.CHA.id, stat: getRollValue(Abilities.CHA) },
+                { ability: Abilities.CON.id, stat: getRollValue(Abilities.CON) },
+                { ability: Abilities.DEX.id, stat: getRollValue(Abilities.DEX) },
+                { ability: Abilities.INT.id, stat: getRollValue(Abilities.INT) },
+                { ability: Abilities.STR.id, stat: getRollValue(Abilities.STR) },
+                { ability: Abilities.WIS.id, stat: getRollValue(Abilities.WIS) },
+            ];
+
+            setStats(stats);
+            setCurrentStep({
+                ...currentStep,
+                current: currentStep.current + 1,
+                maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
+            });
+        }
     }
 
     function handleStatOptionChange(updateDetails: IStatsOptionChange) {
@@ -91,6 +102,8 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, stats
         <section className="stats-selection">
             <h2>Stats</h2>
 
+            <button className="button-next" onClick={() => next()}>Next</button>
+
             <section className="stats-dice-rolls">
                 <h3>Dice Rolls</h3>
 
@@ -121,6 +134,8 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, stats
                     <StatScoreTable ability={Abilities.WIS} rollValue={getRollValue(Abilities.WIS)} race={race}/>
                 </div>
             </section>
+
+            <button className="button-next" onClick={() => next()}>Next</button>
         </section>
     );
 }
