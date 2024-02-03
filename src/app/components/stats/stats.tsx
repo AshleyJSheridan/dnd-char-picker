@@ -8,12 +8,14 @@ import { IStatsOptionChange } from "@/app/interfaces/iStatsOptionChange";
 import StatScoreTable from "./statScoreTable";
 import { Abilities, Ability } from "@/app/enums/abilities";
 import { Race } from "@/app/repositories/races";
+import { CharClass } from "../../repositories/charClasses";
 
-export default function Stats({canShow, currentStep, setCurrentStep, race, stats, setStats}: {
+export default function Stats({canShow, currentStep, setCurrentStep, race, charClass, stats, setStats}: {
     canShow: boolean,
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
     race: Race | null;
+    charClass: CharClass |null,
     stats: any,
     setStats: React.Dispatch<SetStateAction<any>>
 }) {
@@ -95,6 +97,19 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, stats
         return 0;
     }
 
+    function getClassPrimaryAbilitiesCount(): number {
+        return charClass?.primaryAbilities.length ?? 0;
+    }
+
+    function getClassPrimaryAbilities(): string {
+        if(!charClass)
+            return '';
+
+        return charClass.primaryAbilities.map(ability => {
+            return ability.name
+        }).join(', ');
+    }
+
     if(!canShow)
         return '';
 
@@ -125,13 +140,16 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, stats
             <section className="stats-modifiers">
                 <h3>Stat Modifiers</h3>
 
+                <p>The primary {(getClassPrimaryAbilitiesCount() > 1) ? 'abilities' : 'ability'} for the {charClass?.name} class 
+                    {(getClassPrimaryAbilitiesCount() > 1) ? ' are' : ' is'} {getClassPrimaryAbilities()}</p>
+
                 <div className="stat-modifier-tables">
-                    <StatScoreTable ability={Abilities.CHA} rollValue={getRollValue(Abilities.CHA)} race={race}/>
-                    <StatScoreTable ability={Abilities.CON} rollValue={getRollValue(Abilities.CON)} race={race}/>
-                    <StatScoreTable ability={Abilities.DEX} rollValue={getRollValue(Abilities.DEX)} race={race}/>
-                    <StatScoreTable ability={Abilities.INT} rollValue={getRollValue(Abilities.INT)} race={race}/>
-                    <StatScoreTable ability={Abilities.STR} rollValue={getRollValue(Abilities.STR)} race={race}/>
-                    <StatScoreTable ability={Abilities.WIS} rollValue={getRollValue(Abilities.WIS)} race={race}/>
+                    <StatScoreTable ability={Abilities.CHA} rollValue={getRollValue(Abilities.CHA)} race={race} primaryAbilities={charClass?.primaryAbilities}/>
+                    <StatScoreTable ability={Abilities.CON} rollValue={getRollValue(Abilities.CON)} race={race} primaryAbilities={charClass?.primaryAbilities}/>
+                    <StatScoreTable ability={Abilities.DEX} rollValue={getRollValue(Abilities.DEX)} race={race} primaryAbilities={charClass?.primaryAbilities}/>
+                    <StatScoreTable ability={Abilities.INT} rollValue={getRollValue(Abilities.INT)} race={race} primaryAbilities={charClass?.primaryAbilities}/>
+                    <StatScoreTable ability={Abilities.STR} rollValue={getRollValue(Abilities.STR)} race={race} primaryAbilities={charClass?.primaryAbilities}/>
+                    <StatScoreTable ability={Abilities.WIS} rollValue={getRollValue(Abilities.WIS)} race={race} primaryAbilities={charClass?.primaryAbilities}/>
                 </div>
             </section>
 

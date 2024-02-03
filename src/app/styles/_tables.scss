@@ -6,6 +6,10 @@ table {
 thead tr {
     background-color: $green;
     color: $white;
+
+    th {
+        border: 1px solid $green;
+    }
 }
 
 tbody tr {

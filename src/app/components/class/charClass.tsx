@@ -10,7 +10,7 @@ export default function CharClass({canShow, currentStep, setCurrentStep, charCla
     canShow: boolean, 
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
-    charClass: CharClass  |null,
+    charClass: CharClass |null,
     setCharClass: React.Dispatch<SetStateAction<CharClass|null>>
 }) {
     let [selectedClass, setSelectedClass] = useState<CharClass|null>(null);
