@@ -8,6 +8,8 @@ import { SetStateAction, useState } from "react";
 import { Skills, Skill } from "@/app/enums/skills";
 import { TraitType } from "@/app/enums/traitTypes";
 import { Trait } from "@/app/repositories/traits";
+import CharSkill from "./skill";
+import React from "react";
 
 export default function CharSkills({canShow, currentStep, setCurrentStep, race, background, level, charClass, skills, setSkills}: {
     canShow: boolean,
@@ -74,7 +76,10 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
         setSelectedSkills(newSelectedSkills);
     }
 
-    function handleSkillUpdate(eventTarget: EventTarget, skillId: string) {
+    function handleSkillUpdate(details: any) {
+        const eventTarget: EventTarget = details.target;
+        const skillId: string = details.skillId;
+
         if(eventTarget instanceof HTMLInputElement) {
             //let selectedSkill = selectedSkills[skillId];
             let updatedSkills = {...selectedSkills};
@@ -97,28 +102,20 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
     }
 
     function getSkills(race: Race | null, background: Background | null) {
-        //let allCharSkills = getPreselectedSkills(race, background);
-
         return Object.entries(Skills).map(([skillName, {}]) => {
             const skill = Skills[skillName as keyof Skills];
             const skillSelected = selectedSkills[skill.id]?.selected ?? false;
             const selectionReadOnly = selectedSkills[skill.id]?.readonly ?? false;
 
             return (
-                <li key={skill.id} className={skillSelected ? 'selected' : ''}>
-                    <div className="checkbox">
-                        <input
-                            type="checkbox"
-                            name="selected-skill" 
-                            id={"selected-skill-" + skill.id}
-                            checked={skillSelected}
-                            readOnly={selectionReadOnly}
-                            onChange={event => handleSkillUpdate(event.target, skill.id)}
-                        />
-                        <label htmlFor={"selected-skill-" + skill.id}>{skill.name} ({skill.primaryAbility.name})</label>
-                    </div>
-                    <p>{skill.description}</p>
-                </li>
+                <React.Fragment key={crypto.randomUUID()}>
+                    <CharSkill
+                        skill={skill}
+                        skillSelected={skillSelected}
+                        selectionReadOnly={selectionReadOnly}
+                        handleSkillUpdate={handleSkillUpdate}
+                    />
+                </React.Fragment>
             )
         });
     }
