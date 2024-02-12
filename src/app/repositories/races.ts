@@ -25,7 +25,7 @@ export const Races: Race[] = [
             { id: 101, name: 'Hill Dwarf', traits: [Traits.ABILITY_WIS_MINOR, Traits.DWARVEN_TOUGHNESS] },
             { id: 102, name: 'Mountain Dwarf', traits: [Traits.ABILITY_STR, Traits.DWARVEN_ARMOR]},
         ], 
-        traits: [Traits.SIZE_MEDIUM, Traits.DARKVISION, Traits.DWARVEN_RESILIENCE, Traits.DWARVEN_COMBAT_TRAINING, Traits.TOOL_PROFICIENCY],
+        traits: [Traits.SIZE_MEDIUM, Traits.DARKVISION, Traits.DWARVEN_RESILIENCE, Traits.DWARVEN_COMBAT_TRAINING, Traits.TOOL_PROFICIENCY, Traits.STONECUNNING],
         languages: [Languages.COMMON, Languages.DWARVISH]
     },
     { id: 2, name: 'Elf', maxAge: 750, maxHeight: 6, speed: 30, 

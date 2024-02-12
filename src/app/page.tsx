@@ -11,7 +11,7 @@ import Background from "./components/background/background";
 import { Race as CharRace } from "./repositories/races";
 import Level from "./components/level/level";
 import Stats from "./components/stats/stats";
-import Skills from "./components/skills/skills";
+import CharSkills from "./components/skills/skills";
 
 export default function Home() {
     const [currentStep, setCurrentStep] = useState({current: 1, maxCompleted: 0});
@@ -96,11 +96,12 @@ export default function Home() {
                     stats={level}
                     setStats={setStats}
                 />
-                <Skills
+                <CharSkills
                     canShow={canShowComponent('Skills')}
                     currentStep={currentStep} 
                     setCurrentStep={setCurrentStep} 
                     race={race}
+                    background={background}
                     level={level}
                     charClass={charClass}
                     skills={skills}

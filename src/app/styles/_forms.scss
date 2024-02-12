@@ -40,3 +40,38 @@ select {
     font-size: 100%;
     padding: .5em;
 }
+
+.checkbox {
+    input {
+        opacity: 0;
+        position: absolute;
+    }
+
+    label {
+        display: inline-block;
+        position: relative;
+        text-indent: 2em;
+
+        &::before,
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            height: 1.5em;
+            width: 1.5em;
+        }
+
+        &::before {
+            border: 1px solid $dark-grey;
+            border-radius: 3px;
+        }
+    }
+
+    input:checked + label:before {
+        background-color: $purple;
+        background-image: url(/img/tick.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+    }
+}

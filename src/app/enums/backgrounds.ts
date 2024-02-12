@@ -1,4 +1,4 @@
-import { Skills } from "./skills";
+import { Skill, Skills } from "./skills";
 import { InventoryItems, InventoryItem } from "./inventory";
 
 export interface CharacterStyles {
@@ -17,7 +17,7 @@ export interface Background {
     id: string;
     name: string;
     description: string;
-    proficiencies: any[];
+    proficiencies: Skill[];
     extraLanguages: number;
     equipment: InventoryItem[];
     startingGold: number;

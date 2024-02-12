@@ -1,37 +1,126 @@
 "use client";
 
+import { Background } from "@/app/enums/backgrounds";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { CharClass } from "@/app/repositories/charClasses";
 import { Race } from "@/app/repositories/races";
-import { SetStateAction } from "react";
+import { SetStateAction, useState } from "react";
+import { Skills, Skill } from "@/app/enums/skills";
+import { TraitType } from "@/app/enums/traitTypes";
+import { Trait } from "@/app/repositories/traits";
 
-export default function Skills({canShow, currentStep, setCurrentStep, race, level, charClass, skills, setSkills}: {
+export default function CharSkills({canShow, currentStep, setCurrentStep, race, background, level, charClass, skills, setSkills}: {
     canShow: boolean,
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
     race: Race | null;
+    background: Background | null,
     level: number,
-    charClass: CharClass  |null,
+    charClass: CharClass | null,
     skills: any,
     setSkills: React.Dispatch<SetStateAction<any>>,
 }) {
+    const [skillsAllowed, setSkillsAllowed] = useState(0);
+    const [selectedSkills, setSelectedSkills] = useState({});
+
+    if(canShow) {
+        initialiseSelectedSkills(race, background);
+    }
+
     function next() {
-        
-        /*setStats(stats);
+        setSkills(getPreselectedSkills(race, background));
         setCurrentStep({
             ...currentStep,
             current: currentStep.current + 1,
             maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        });*/
+        });
     }
 
-    function getRacialTraits(race: Race | null) {
-        if(!race)
-            return '';
+    function getPreselectedSkills(race: Race | null, background: Background | null): (Skill | undefined)[] {
+        let charTraitSkills: (Skill | undefined)[] = [];
+        let charBackgroundSkills: Skill[] | undefined = background?.proficiencies ?? [];
 
-        console.log(race.traits);
+        if(race?.traits) {
+            charTraitSkills = race.traits.filter((trait) => trait.type === TraitType.SKILL && trait.associatedSkill).map((trait) => trait.associatedSkill)
+        }
 
-        return '';
+        return [...charTraitSkills, ...charBackgroundSkills];
+    }
+
+    function getSkillIsRacial(traits: Trait[] | undefined | null, skill: Skill): boolean {
+        if(!race?.traits)
+            return false;
+
+        return race.traits.some((trait) => trait?.associatedSkill?.id === skill.id);
+    }
+
+    function initialiseSelectedSkills(race: Race | null, background: Background | null): void {
+        if(Object.keys(selectedSkills).length > 0)
+            return;
+
+        let allCharSkills = getPreselectedSkills(race, background);
+        let newSelectedSkills = {...selectedSkills};
+
+        Object.entries(Skills).map(([skillName, {}]) => {
+            const skill: Skill = Skills[skillName as keyof Skills];
+
+            // can't use Array.includes here, because the elements are object instances which can't be directly compared
+            const skillSelected: boolean = allCharSkills ? allCharSkills.some((charSkill) => charSkill?.id === skill.id) : false;
+            const selectionReadOnly = getSkillIsRacial(race?.traits, skill);
+
+            newSelectedSkills[skill.id] = {selected: skillSelected, readonly: selectionReadOnly};
+        });
+
+        setSelectedSkills(newSelectedSkills);
+    }
+
+    function handleSkillUpdate(eventTarget: EventTarget, skillId: string) {
+        if(eventTarget instanceof HTMLInputElement) {
+            //let selectedSkill = selectedSkills[skillId];
+            let updatedSkills = {...selectedSkills};
+            if(!updatedSkills[skillId].readonly) {
+                if(skillsAllowed > 0 && updatedSkills[skillId].selected === false) {
+                    setSkillsAllowed(skillsAllowed - 1);
+                    updatedSkills[skillId].selected = true;
+                    setSelectedSkills(updatedSkills);
+                    return;
+                }
+
+                if(updatedSkills[skillId].selected === true) {
+                    setSkillsAllowed(skillsAllowed + 1);
+                    updatedSkills[skillId].selected = false;
+                    setSelectedSkills(updatedSkills);
+                    return;
+                }
+            }
+        }
+    }
+
+    function getSkills(race: Race | null, background: Background | null) {
+        //let allCharSkills = getPreselectedSkills(race, background);
+
+        return Object.entries(Skills).map(([skillName, {}]) => {
+            const skill = Skills[skillName as keyof Skills];
+            const skillSelected = selectedSkills[skill.id]?.selected ?? false;
+            const selectionReadOnly = selectedSkills[skill.id]?.readonly ?? false;
+
+            return (
+                <li key={skill.id} className={skillSelected ? 'selected' : ''}>
+                    <div className="checkbox">
+                        <input
+                            type="checkbox"
+                            name="selected-skill" 
+                            id={"selected-skill-" + skill.id}
+                            checked={skillSelected}
+                            readOnly={selectionReadOnly}
+                            onChange={event => handleSkillUpdate(event.target, skill.id)}
+                        />
+                        <label htmlFor={"selected-skill-" + skill.id}>{skill.name} ({skill.primaryAbility.name})</label>
+                    </div>
+                    <p>{skill.description}</p>
+                </li>
+            )
+        });
     }
 
     if(!canShow)
@@ -39,15 +128,17 @@ export default function Skills({canShow, currentStep, setCurrentStep, race, leve
 
     return (
         <section className="skills-selection">
-            <h2>Stats</h2>
+            <h2>Skills</h2>
 
             <button className="button-next" onClick={() => next()}>Next</button>
 
-            <section className="skills-racial-traits">
-                <h3>Racial Traits</h3>
+            <p>Skills have been pre-selected based on choice of character race and background. Racial skills cannot be altered.</p>
 
-                {getRacialTraits(race)}
-            </section>
+            <p className="skills-selection-remaining">Selections remaining: {skillsAllowed}.</p>
+
+            <ul className="skills-list">
+                {getSkills(race, background)}
+            </ul>
 
             <button className="button-next" onClick={() => next()}>Next</button>
         </section>

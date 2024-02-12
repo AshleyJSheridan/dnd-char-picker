@@ -1,0 +1,35 @@
+.skills-selection {
+    padding: 0 1em;
+
+    p {
+        margin: 1em 0;
+    }
+
+    .skills-selection-remaining {
+        border: 1px solid $dark-grey;
+        display: inline-block;
+        margin: 0;
+        padding: .25em;
+    }
+
+    .skills-list {
+        margin: 1em 0;
+
+        li {
+            background-color: $white;
+            border: 1px solid $light-grey;
+            display: block;
+            margin: .5em 0;
+            padding: .5em;
+
+            &.selected {
+                background-color: lighten($green, 60);
+            }
+        }
+
+        label {
+            font-weight: bold;
+        }
+    }
+}
+
