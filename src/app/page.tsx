@@ -12,6 +12,7 @@ import { Race as CharRace } from "./repositories/races";
 import Level from "./components/level/level";
 import Stats from "./components/stats/stats";
 import CharSkills from "./components/skills/skills";
+import CharLanguages from "./components/languages/languages";
 
 export default function Home() {
     const [currentStep, setCurrentStep] = useState({current: 1, maxCompleted: 0});
@@ -24,6 +25,7 @@ export default function Home() {
     const [level, setLevel] = useState(1);
     const [stats, setStats] = useState({});
     const [skills, setSkills] = useState({});
+    const [languages, setLanguages] = useState<string[]>([]);
 
     function canShowComponent(navName: string) {
         let navItem;
@@ -106,6 +108,14 @@ export default function Home() {
                     charClass={charClass}
                     skills={skills}
                     setSkills={setSkills}
+                />
+                <CharLanguages 
+                    canShow={canShowComponent('Languages')}
+                    currentStep={currentStep} 
+                    setCurrentStep={setCurrentStep}
+                    race={race}
+                    charClass={charClass}
+                    setLanguages={setLanguages}
                 />
             </main>
         </>

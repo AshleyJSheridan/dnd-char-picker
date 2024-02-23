@@ -16,7 +16,7 @@ export default function TraitList({traits, languages}: {traits?: Trait[], langua
     }
 
     function getLanguageBlock(languages?: Language[]) {
-        if(!languages)
+        if(!languages || languages.length === 0)
             return '';
 
         return (

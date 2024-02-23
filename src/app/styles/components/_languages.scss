@@ -1,0 +1,27 @@
+.languages-list {
+    display: grid;
+    gap: .25em;
+    grid-template-columns: repeat(4, 1fr);
+    padding: .5em;
+
+    li {
+        background-color: $white;
+        border: 1px solid $light-grey;
+        border-radius: 5px;
+        display: block;
+        padding: .5em;
+    }
+
+    .language-attributes {
+        margin-top: .75em;
+        text-indent: 0;
+
+        dt {
+            font-weight: bold;
+        }
+
+        dd {
+            margin-left: 1.5em;
+        }
+    }
+}
