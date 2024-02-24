@@ -6,11 +6,10 @@ import React, { SetStateAction, useState } from "react";
 import ClassIcon from "./classIcon";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 
-export default function CharClass({canShow, currentStep, setCurrentStep, charClass, setCharClass}: {
+export default function CharClass({canShow, currentStep, setCurrentStep, setCharClass}: {
     canShow: boolean, 
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
-    charClass: CharClass |null,
     setCharClass: React.Dispatch<SetStateAction<CharClass|null>>
 }) {
     let [selectedClass, setSelectedClass] = useState<CharClass|null>(null);

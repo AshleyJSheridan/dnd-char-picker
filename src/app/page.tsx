@@ -49,7 +49,8 @@ export default function Home() {
             <main>
                 <Gender 
                     canShow={canShowComponent('Gender')} 
-                    gender={gender} setGender={setGender} 
+                    gender={gender}
+                    setGender={setGender} 
                     currentStep={currentStep} 
                     setCurrentStep={setCurrentStep}
                 />
@@ -72,21 +73,18 @@ export default function Home() {
                     canShow={canShowComponent('Class')}
                     currentStep={currentStep} 
                     setCurrentStep={setCurrentStep} 
-                    charClass={charClass} 
                     setCharClass={setCharClass}
                 />
                 <Background
                     canShow={canShowComponent('Background')}
                     currentStep={currentStep} 
                     setCurrentStep={setCurrentStep} 
-                    background={background}
                     setBackground={setBackground}
                 />
                 <Level
                     canShow={canShowComponent('Level')}
                     currentStep={currentStep} 
                     setCurrentStep={setCurrentStep} 
-                    level={level}
                     setLevel={setLevel}
                 />
                 <Stats
@@ -95,7 +93,6 @@ export default function Home() {
                     setCurrentStep={setCurrentStep} 
                     race={race}
                     charClass={charClass}
-                    stats={level}
                     setStats={setStats}
                 />
                 <CharSkills
@@ -106,7 +103,6 @@ export default function Home() {
                     background={background}
                     level={level}
                     charClass={charClass}
-                    skills={skills}
                     setSkills={setSkills}
                 />
                 <CharLanguages 

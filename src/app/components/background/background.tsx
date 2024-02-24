@@ -5,11 +5,10 @@ import { Background, Backgrounds } from "@/app/enums/backgrounds";
 import BackgroundDetails from "./backgroundDetails";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 
-export default function Background({canShow, currentStep, setCurrentStep, background, setBackground}: {
+export default function Background({canShow, currentStep, setCurrentStep, setBackground}: {
     canShow: boolean,
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
-    background: Background, 
     setBackground: React.Dispatch<SetStateAction<Background|null>>
 }) {
     let [selectedBackground, setSelectedBackground] = useState<Background|null>(null);

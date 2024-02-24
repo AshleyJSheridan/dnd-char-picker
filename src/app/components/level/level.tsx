@@ -3,11 +3,10 @@
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { SetStateAction } from "react";
 
-export default function Level({canShow, currentStep, setCurrentStep, level, setLevel}: {
+export default function Level({canShow, currentStep, setCurrentStep, setLevel}: {
     canShow: boolean,
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
-    level: number,
     setLevel: React.Dispatch<SetStateAction<number>>
 }) {
     const fixedLevel = 1;

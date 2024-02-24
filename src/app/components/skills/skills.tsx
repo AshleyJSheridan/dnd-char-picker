@@ -11,7 +11,7 @@ import { Trait } from "@/app/repositories/traits";
 import CharSkill from "./skill";
 import React from "react";
 
-export default function CharSkills({canShow, currentStep, setCurrentStep, race, background, level, charClass, skills, setSkills}: {
+export default function CharSkills({canShow, currentStep, setCurrentStep, race, background, level, charClass, setSkills}: {
     canShow: boolean,
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
@@ -19,7 +19,6 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
     background: Background | null,
     level: number,
     charClass: CharClass | null,
-    skills: any,
     setSkills: React.Dispatch<SetStateAction<any>>,
 }) {
     const [skillsAllowed, setSkillsAllowed] = useState(0);

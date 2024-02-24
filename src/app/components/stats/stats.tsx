@@ -10,13 +10,12 @@ import { Abilities, Ability } from "@/app/enums/abilities";
 import { Race } from "@/app/repositories/races";
 import { CharClass } from "../../repositories/charClasses";
 
-export default function Stats({canShow, currentStep, setCurrentStep, race, charClass, stats, setStats}: {
+export default function Stats({canShow, currentStep, setCurrentStep, race, charClass, setStats}: {
     canShow: boolean,
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
     race: Race | null;
     charClass: CharClass |null,
-    stats: any,
     setStats: React.Dispatch<SetStateAction<any>>
 }) {
     const [statRolls, setStatRolls] = useState(Array(6).fill(Array(4).fill(0)));
