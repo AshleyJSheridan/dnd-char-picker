@@ -1,5 +1,5 @@
 import { SkillType } from "../enums/skillType";
-import { SpellSchools } from "../enums/spellSchools";
+import { ClassSpellGroups } from "../enums/spellSchools";
 
 export interface ClassSkill {
     id: string;
@@ -7,7 +7,7 @@ export interface ClassSkill {
     level: number;
     name: string;
     description: string;
-    school?: SpellSchools;
+    classSchoolGroup?: ClassSpellGroups;
 };
 
 type ClassSkills = Record<string, ClassSkill>;
@@ -110,7 +110,7 @@ export const ClassSkills = {
 
     /** bard skills */
     'SPELLS_BARD': { 
-        id: 'SPELLS_BARD', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', school: SpellSchools.BARD,
+        id: 'SPELLS_BARD', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', classSchoolGroup: ClassSpellGroups.BARD,
         description: '<p>You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your spells are part of your vast repertoire, magic that you can tune to different situations. You can learn cantrips and spells from the Bard spell list appropriate to your level.</p>' },
     'BARDIC_INSPIRATION': { 
         id: 'BARDIC_INSPIRATION', skillType: SkillType.SKILL, level: 1, name: 'Bardic Inspiration',
@@ -151,7 +151,7 @@ export const ClassSkills = {
           
     /** cleric skills */
     'SPELLS_CLERIC': { 
-        id: 'SPELLS_CLERIC', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', school: SpellSchools.CLERIC,
+        id: 'SPELLS_CLERIC', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', classSchoolGroup: ClassSpellGroups.CLERIC,
         description: '<p>As a conduit for divine power, you can cast spells from the cleric spell list, appropriate to your level.</p>' },
     'DIVINE_DOMAIN': { 
         id: 'DIVINE_DOMAIN', skillType: SkillType.SKILL, level: 1, name: 'Divine Domain',
@@ -175,7 +175,7 @@ export const ClassSkills = {
         id: 'DRUIDIC', skillType: SkillType.LANGUAGE, level: 1, name: 'Druidic',
         description: '<p>You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message’s presence with a successful DC 15 Wisdom (Perception) check but can’t decipher it without magic.</p>' },
     'SPELLS_DRUID': {
-        id: 'SPELLS_DRUID', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', school: SpellSchools.DRUID,
+        id: 'SPELLS_DRUID', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', classSchoolGroup: ClassSpellGroups.DRUID,
         description: '<p>Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will.</p><p>Wisdom is your spellcasting ability for your druid spells, since your magic draws upon your devotion and attunement to nature. You use your Wisdom whenever a spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a druid spell you cast and when making an attack roll with one.</p><p><strong>Ritual Casting</strong></p><p>You can cast a druid spell as a ritual if that spell has the ritual tag and you have the spell prepared. This consumes no spell slot, but the spell must be properly prepared beforehand and must be one which is allowed (tagged) to be cast as a ritual spell. Ritual spellcasting takes ~10 minutes, making them poorly suited for combat.</p>' },
     'WILD_SHAPE': {
         id: 'WILD_SHAPE', skillType: SkillType.SKILL, level: 2, name: 'Wild Shape',
@@ -303,7 +303,7 @@ export const ClassSkills = {
         id: 'LAY_ON_HANDS', skillType: SkillType.SKILL, level: 1, name: 'Lay on Hands',
         description: '<p>Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level × 5.</p><p>As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.</p><p>Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.</p><p>This feature has no effect on undead and constructs.</p>' },
     'SPELLS_PALADIN': {
-        id: 'SPELLS_PALADIN', skillType: SkillType.MAGIC, level: 2, name: 'Spellcasting', school: SpellSchools.PALADIN,
+        id: 'SPELLS_PALADIN', skillType: SkillType.MAGIC, level: 2, name: 'Spellcasting', classSchoolGroup: ClassSpellGroups.PALADIN,
         description: '<p>By 2nd level, you have learned to draw on divine magic through meditation and prayer to cast spells as a cleric does.</p><p>Charisma is your spellcasting ability for your paladin spells, since their power derives from the strength of your convictions. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a paladin spell you cast and when making an attack roll with one.</p><p>You can use a holy symbol as a spellcasting focus for your paladin spells.</p>' },
     'DIVINE_SMITE': {
         id: 'DIVINE_SMITE', skillType: SkillType.SKILL, level: 2, name: 'Divine Smite',
@@ -338,7 +338,7 @@ export const ClassSkills = {
         id: 'NATURAL_EXPLORER_L1', skillType: SkillType.SKILL, level: 1, name: 'Natural Explorer',
         description: '<p>You are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you’re proficient in.</p><p>While traveling for an hour or more in your favored terrain, you gain the following benefits:</p><ul><li>Difficult terrain doesn’t slow your group’s travel.</li><li>Your group can’t become lost except by magical means.</li><li>Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger.</li><li>If you are traveling alone, you can move stealthily at a normal pace.</li><li>When you forage, you find twice as much food as you normally would.</li><li>While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.</li></ul><p>' },
     'SPELLS_RANGER': {
-        id: 'SPELLS_RANGER', skillType: SkillType.MAGIC, level: 2, name: 'Spellcasting', school: SpellSchools.RANGER,
+        id: 'SPELLS_RANGER', skillType: SkillType.MAGIC, level: 2, name: 'Spellcasting', classSchoolGroup: ClassSpellGroups.RANGER,
         description: '<p>By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does.</p>' },
     'RANGER_ARCHETYPE': {
         id: 'RANGER_ARCHETYPE', skillType: SkillType.SKILL, level: 3, name: 'Ranger Archetype',
@@ -414,7 +414,7 @@ export const ClassSkills = {
 
     /** sorcerer skills */
     'SPELLS_SORCERER': {
-        id: 'SPELLS_SORCERER', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', school: SpellSchools.SORCERER,
+        id: 'SPELLS_SORCERER', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', classSchoolGroup: ClassSpellGroups.SORCERER,
         description: '<p>An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells.</p><p>Charisma is your spellcasting ability for your sorcerer spells, since the power of your magic relies on your ability to project your will into the world. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a sorcerer spell you cast and when making an attack roll with one.</p><p>You can use an arcane focus as a spellcasting focus for your sorcerer spells.</p>' },
     'SORCEROUS_ORIGIN': {
         id: 'SORCEROUS_ORIGIN', skillType: SkillType.SKILL, level: 1, name: 'Sorcerous Origin',
@@ -440,7 +440,7 @@ export const ClassSkills = {
         id: 'OTHERWORDLY_PATRON', skillType: SkillType.SKILL, level: 1, name: 'Otherwordly Patron',
         description: '<p>At 1st level, you have struck a bargain with an otherworldly being of your choice: the Fiend, which is detailed at the end of the class description, or one from another source. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.</p>' },
     'PACT_MAGIC': {
-        id: 'PACT_MAGIC', skillType: SkillType.MAGIC, level: 1, name: 'Pact Magic', school: SpellSchools.WARLOCK,
+        id: 'PACT_MAGIC', skillType: SkillType.MAGIC, level: 1, name: 'Pact Magic', classSchoolGroup: ClassSpellGroups.WARLOCK,
         description: '<p>Your arcane research and the magic bestowed on you by your patron have given you facility with spells.</p><p><strong>Spellcasting Ability</strong></p><p>Charisma is your spellcasting ability for your warlock spells, so you use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a warlock spell you cast and when making an attack roll with one.</p><p>You can use an arcane focus as a spellcasting focus for your warlock spells.</p>' },
     'ELDRITCH_ONVOCATIONS': {
         id: 'ELDRITCH_ONVOCATIONS', skillType: SkillType.SKILL, level: 2, name: 'Eldritch Invocations',
@@ -463,7 +463,7 @@ export const ClassSkills = {
 
     /** wizard skills */
     'SPELLS_WIZARD': {
-        id: 'SPELLS_WIZARD', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', school: SpellSchools.WIZARD,
+        id: 'SPELLS_WIZARD', skillType: SkillType.MAGIC, level: 1, name: 'Spellcasting', classSchoolGroup: ClassSpellGroups.WIZARD,
         description: '<p>As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power.</p><p><strong>Spellbook</strong></p><p>At 1st level, you have a spellbook containing six 1st-level wizard spells of your choice. Your spellbook is the repository of the wizard spells you know, except your cantrips, which are fixed in your mind.</p><p><strong>Preparing and Casting Spells</strong></p><p>The Wizard table shows how many spell slots you have to cast your wizard spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell’s level or higher. You regain all expended spell slots when you finish a long rest.</p><p>You prepare the list of wizard spells that are available for you to cast. To do so, choose a number of wizard spells from your spellbook equal to your Intelligence modifier + your wizard level (minimum of one spell). The spells must be of a level for which you have spell slots.</p><p>You can change your list of prepared spells when you finish a long rest. Preparing a new list of wizard spells requires time spent studying your spellbook and memorizing the incantations and gestures you must make to cast the spell: at least 1 minute per spell level for each spell on your list.</p><p><strong>Spellcasting Ability</strong></p><p>Intelligence is your spellcasting ability for your wizard spells, since you learn your spells through dedicated study and memorization. You use your Intelligence whenever a spell refers to your spellcasting ability. In addition, you use your Intelligence modifier when setting the saving throw DC for a wizard spell you cast and when making an attack roll with one.</p><p><strong>Ritual Casting</strong></p><p>You can cast a wizard spell as a ritual if that spell has the ritual tag and you have the spell in your spellbook. You don’t need to have the spell prepared.</p>' },
     'ARCANE_RECOVERY': {
         id: 'ARCANE_RECOVERY', skillType: SkillType.SKILL, level: 1, name: 'Arcane Recovery',

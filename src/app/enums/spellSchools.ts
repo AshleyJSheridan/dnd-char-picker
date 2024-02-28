@@ -1,4 +1,4 @@
-export enum SpellSchools {
+export enum ClassSpellGroups {
     BARD,
     CLERIC,
     DRUID,

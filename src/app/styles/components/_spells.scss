@@ -1,0 +1,91 @@
+.spells-selection {
+    .spell-block {
+        border: 1px solid $light-grey;
+        margin: .5em;
+        
+        summary {
+            background-color: $white;
+            cursor: pointer;
+            padding: 1em;
+        }
+    }
+
+    .spell-list {
+        li {
+            background-color: $white;
+            border: 1px solid $light-grey;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            padding: .5em;
+            margin: .5em;
+
+            &:hover {
+                background-color: $light-green;
+            }
+
+            .spell-name {
+                color: $purple;
+                font-size: 130%;
+                font-weight: bold;
+            }
+
+            .spell-details {
+                display: grid;
+                gap: .25em;
+                grid-template-columns: 1fr 5fr;
+
+                dt {
+                    font-weight: bold;
+                    min-width: 10em;
+                }
+            }
+
+            .spell-description {
+                margin-top: .5em;
+            }
+
+            .spell-school-icon {
+                align-items: center;
+                background-color: $black;
+                border: 1px solid $light-grey;
+                border-radius: 50%;
+                display: flex;
+                float: right;
+                justify-content: center;
+                height: 5em;
+                width: 5em;
+
+                img {
+                    max-height: 95%;
+                    max-width: 95%;
+                }
+
+                &.spell-school-abjuration img {
+                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(0, 0, 255) 0 0 4px) drop-shadow(rgb(0, 0, 255) 0 0 5px);
+                }
+                &.spell-school-conjuration img {
+                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(241, 129, 0) 0 0 4px) drop-shadow(rgb(241, 129, 0) 0 0 5px);
+                }
+                &.spell-school-divination img {
+                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(121, 121, 179) 0 0 4px) drop-shadow(rgb(121, 121, 179) 0 0 5px);
+                }
+                &.spell-school-enchantment img {
+                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(185, 70, 185) 0 0 4px) drop-shadow(rgb(185, 70, 185) 0 0 5px);
+                }
+                &.spell-school-evocation img {
+                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(255, 0, 0) 0 0 4px) drop-shadow(rgb(255, 0, 0) 0 0 5px);
+                }
+                &.spell-school-illusion img {
+                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(119, 0, 255) 0 0 4px) drop-shadow(rgb(119, 0, 255) 0 0 5px);
+                }
+                &.spell-school-necromancy img {
+                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(0, 126, 38) 0 0 4px) drop-shadow(rgb(0, 126, 38) 0 0 5px);
+                }
+                &.spell-school-transmutation img {
+                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(221, 206, 0) 0 0 4px) drop-shadow(rgb(221, 206, 0) 0 0 5px);
+                }
+            }
+        }
+    }
+}

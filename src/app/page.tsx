@@ -13,6 +13,7 @@ import Level from "./components/level/level";
 import Stats from "./components/stats/stats";
 import CharSkills from "./components/skills/skills";
 import CharLanguages from "./components/languages/languages";
+import Spells from "./components/spells/spells";
 
 export default function Home() {
     const [currentStep, setCurrentStep] = useState({current: 1, maxCompleted: 0});
@@ -26,6 +27,7 @@ export default function Home() {
     const [stats, setStats] = useState({});
     const [skills, setSkills] = useState({});
     const [languages, setLanguages] = useState<string[]>([]);
+    const [spells, setSpells] = useState<string[]>([]);
 
     function canShowComponent(navName: string) {
         let navItem;
@@ -112,6 +114,12 @@ export default function Home() {
                     race={race}
                     charClass={charClass}
                     setLanguages={setLanguages}
+                />
+                <Spells
+                    canShow={canShowComponent('Magic')}
+                    currentStep={currentStep} 
+                    setCurrentStep={setCurrentStep}
+                    charClass={charClass}
                 />
             </main>
         </>
