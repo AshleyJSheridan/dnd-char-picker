@@ -11,8 +11,8 @@ export default function CharLanguages({canShow, currentStep, setCurrentStep, rac
     canShow: boolean,
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
-    race: Race,
-    charClass: CharClass,
+    race: Race | null,
+    charClass: CharClass | null,
     setLanguages: React.Dispatch<SetStateAction<string[]>>,
 }) {
     const [selectedLanguages, setSelectedLanguages] = useState({});
