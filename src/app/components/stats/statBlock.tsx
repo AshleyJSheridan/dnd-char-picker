@@ -1,18 +1,22 @@
 import { SetStateAction } from "react";
 import { Abilities } from "@/app/enums/abilities";
 
-export default function StatBlock({roll, statRolls, handleStatOptionChange, value}: {
+export default function StatBlock({roll, statRolls, handleStatOptionChange, value, assignedStats}: {
     roll: number,
     statRolls: number[][],
     handleStatOptionChange: React.Dispatch<SetStateAction<any>>,
-    value: string
+    value: string,
+    assignedStats: string[]
 }) {
     function getStatsOptions() {
         const abilities = Object.entries(Abilities).map(ability => ability[0]);
 
-        return abilities.map(stat => 
-            <option key={stat} value={stat}>{stat}</option>
-        );
+        return abilities.map(stat => {
+            if(assignedStats.includes(stat) && stat !== assignedStats[roll])
+                return '';
+            
+            return <option key={stat} value={stat}>{stat}</option>
+        });
     }
 
     function getRollsTotal(rolls: number[]) {
