@@ -120,6 +120,7 @@ export default function Home() {
                     currentStep={currentStep} 
                     setCurrentStep={setCurrentStep}
                     charClass={charClass}
+                    level={level}
                 />
             </main>
         </>

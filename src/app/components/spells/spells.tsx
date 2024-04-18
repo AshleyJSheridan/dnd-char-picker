@@ -3,17 +3,17 @@
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { SetStateAction, useState } from "react";
 import { ClassSpellList } from "@/app/repositories/classSpellList";
+import { ClassSpellSlots } from "@/app/repositories/classSpellSlots";
 import { CharClass } from "@/app/repositories/charClasses";
 import { SkillType } from "@/app/enums/skillType";
 import { Spells as SpellBook } from "@/app/repositories/spells";
-import { join } from "path";
 
-
-export default function Spells({canShow, currentStep, setCurrentStep, charClass}: {
+export default function Spells({canShow, currentStep, setCurrentStep, charClass, level}: {
     canShow: boolean,
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
     charClass: CharClass | null,
+    level: number
 }) {
     const [spellsAllowed, setSpellsAllowed] = useState(0);
 
@@ -26,7 +26,7 @@ export default function Spells({canShow, currentStep, setCurrentStep, charClass}
         });*/
     }
 
-    function getClassSpellsByLevel(level: number): string | React.JSX.Element[] {
+    function getClassSpellsForLevel(level: number): string | React.JSX.Element[] {
         if(!charClass)
             return '';
 
@@ -93,17 +93,57 @@ export default function Spells({canShow, currentStep, setCurrentStep, charClass}
         return components.join(',');
     }
 
-    function getAllSpellsByGroup(levels: string[]): string {
+    function getAllSpellsByGroup(levels: string[]): React.JSX.Element[] {
         return levels.map((level, index) => {
             return (
                 <details key={index} className="spell-block">
                     <summary>{level}</summary>
                     <ul className="spell-list">
-                        {getClassSpellsByLevel(index)}
+                        {getClassSpellsForLevel(index)}
                     </ul>
                 </details>
             )
         });
+    }
+
+    function getTotalSpellCountAvailable() {
+        if(!charClass)
+            return '';
+
+        const maxSpellLevel = 9;
+        let spellSlots = 0;
+        let charMaxSpellLevel = 1;
+
+        for(let i = 1; i <= maxSpellLevel; i++) {
+            let spellsAtLevel = getSpellCountAvailablePerSpellAndCharLevel(level, i);
+
+            spellSlots += spellsAtLevel;
+            if(spellsAtLevel > 0) {
+                charMaxSpellLevel = i;
+            }
+        }
+
+        return `${spellSlots} at spell level ${charMaxSpellLevel}`;
+    }
+
+    function getSpellCountAvailablePerSpellAndCharLevel(charLevel: number, spellLevel: number): number {
+        if(!charClass)
+            return 0;
+
+        const classMagicSkills = charClass.classSkills.filter(skill => {
+            return skill.skillType === SkillType.MAGIC
+        });
+        const classSchoolGroup = classMagicSkills[0].classSchoolGroup;
+
+        const classSpellSlots = ClassSpellSlots.filter(list => {
+            return list.classSpellGroup === classSchoolGroup;
+        })[0];
+
+        // check that spells exist at that spell level - e.g. warlocks only go to spell level 5
+        if(classSpellSlots.slots[spellLevel] !== undefined)
+            return classSpellSlots.slots[spellLevel][charLevel - 1];
+
+        return 0;
     }
 
     if(!canShow)
@@ -112,6 +152,16 @@ export default function Spells({canShow, currentStep, setCurrentStep, charClass}
     return (
         <section className="spells-selection">
             <h2>{charClass?.name} Spells</h2>
+
+            <p>Remaining spells for a level {level} {charClass?.name}:</p>
+
+            <dl>
+                <dt>Cantrips</dt>
+                <dd>{getSpellCountAvailablePerSpellAndCharLevel(level, 0)}</dd>
+
+                <dt>Spells</dt>
+                <dd>{getTotalSpellCountAvailable(level)}</dd>
+            </dl>
 
             <button className="button-next" onClick={() => next()}>Next</button>
 
