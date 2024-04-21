@@ -11,6 +11,9 @@
     }
 
     .spell-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
         li {
             background-color: $white;
             border: 1px solid $light-grey;
@@ -23,67 +26,96 @@
             &:hover {
                 background-color: $light-green;
             }
+        }
 
-            .spell-name {
-                color: $purple;
-                font-size: 130%;
+        .spell-name {
+            color: $purple;
+            font-size: 130%;
+            font-weight: bold;
+        }
+
+        .spell-details {
+            display: grid;
+            gap: .25em;
+            grid-template-columns: 1fr 5fr;
+
+            dt {
                 font-weight: bold;
+                min-width: 8em;
+            }
+        }
+
+        .spell-description {
+            margin-top: .5em;
+        }
+
+        .spell-school-icon {
+            align-items: center;
+            background-color: $black;
+            border: 1px solid $light-grey;
+            border-radius: 50%;
+            display: flex;
+            float: right;
+            justify-content: center;
+            height: 5em;
+            width: 5em;
+
+            img {
+                max-height: 95%;
+                max-width: 95%;
             }
 
-            .spell-details {
-                display: grid;
-                gap: .25em;
-                grid-template-columns: 1fr 5fr;
-
-                dt {
-                    font-weight: bold;
-                    min-width: 10em;
-                }
+            &.spell-school-abjuration img {
+                filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(0, 0, 255) 0 0 4px) drop-shadow(rgb(0, 0, 255) 0 0 5px);
             }
-
-            .spell-description {
-                margin-top: .5em;
+            &.spell-school-conjuration img {
+                filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(241, 129, 0) 0 0 4px) drop-shadow(rgb(241, 129, 0) 0 0 5px);
             }
+            &.spell-school-divination img {
+                filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(121, 121, 179) 0 0 4px) drop-shadow(rgb(121, 121, 179) 0 0 5px);
+            }
+            &.spell-school-enchantment img {
+                filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(185, 70, 185) 0 0 4px) drop-shadow(rgb(185, 70, 185) 0 0 5px);
+            }
+            &.spell-school-evocation img {
+                filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(255, 0, 0) 0 0 4px) drop-shadow(rgb(255, 0, 0) 0 0 5px);
+            }
+            &.spell-school-illusion img {
+                filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(119, 0, 255) 0 0 4px) drop-shadow(rgb(119, 0, 255) 0 0 5px);
+            }
+            &.spell-school-necromancy img {
+                filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(0, 126, 38) 0 0 4px) drop-shadow(rgb(0, 126, 38) 0 0 5px);
+            }
+            &.spell-school-transmutation img {
+                filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(221, 206, 0) 0 0 4px) drop-shadow(rgb(221, 206, 0) 0 0 5px);
+            }
+        }
 
-            .spell-school-icon {
-                align-items: center;
-                background-color: $black;
-                border: 1px solid $light-grey;
-                border-radius: 50%;
-                display: flex;
-                float: right;
-                justify-content: center;
-                height: 5em;
-                width: 5em;
+        .spell-components {
+            span {
+                display: block;
 
-                img {
-                    max-height: 95%;
-                    max-width: 95%;
+                &:before {
+                    background-image: url('/img/spell component icons/verbal.svg');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    content: "";
+                    display: inline-block;
+                    height: 1em;
+                    margin-right: .25em;
+                    width: 1em;
                 }
 
-                &.spell-school-abjuration img {
-                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(0, 0, 255) 0 0 4px) drop-shadow(rgb(0, 0, 255) 0 0 5px);
+                &.Material:before {
+                    background-image: url('/img/spell component icons/material.svg');
                 }
-                &.spell-school-conjuration img {
-                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(241, 129, 0) 0 0 4px) drop-shadow(rgb(241, 129, 0) 0 0 5px);
+
+                &.Somatic:before {
+                    background-image: url('/img/spell component icons/somatic.svg');
                 }
-                &.spell-school-divination img {
-                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(121, 121, 179) 0 0 4px) drop-shadow(rgb(121, 121, 179) 0 0 5px);
-                }
-                &.spell-school-enchantment img {
-                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(185, 70, 185) 0 0 4px) drop-shadow(rgb(185, 70, 185) 0 0 5px);
-                }
-                &.spell-school-evocation img {
-                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(255, 0, 0) 0 0 4px) drop-shadow(rgb(255, 0, 0) 0 0 5px);
-                }
-                &.spell-school-illusion img {
-                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(119, 0, 255) 0 0 4px) drop-shadow(rgb(119, 0, 255) 0 0 5px);
-                }
-                &.spell-school-necromancy img {
-                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(0, 126, 38) 0 0 4px) drop-shadow(rgb(0, 126, 38) 0 0 5px);
-                }
-                &.spell-school-transmutation img {
-                    filter: drop-shadow(rgb(255, 255, 255) 0 0 2px) drop-shadow(rgb(221, 206, 0) 0 0 4px) drop-shadow(rgb(221, 206, 0) 0 0 5px);
+
+                &.Verbal:before {
+                    background-image: url('/img/spell component icons/verbal.svg');
                 }
             }
         }

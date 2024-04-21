@@ -19,7 +19,9 @@ export default function Spell({spell}: {
             components.push('Material');
         }
 
-        return components.join(',');
+        return components.map(component => {
+            return `<span class="${component}">${component}</span>`;
+        }).join('');
     }
     
     return (
@@ -39,7 +41,7 @@ export default function Spell({spell}: {
                 <dd>{spell.range}</dd>
 
                 <dt>Components:</dt>
-                <dd>{decodeSpellComponents(spell.components)}</dd>
+                <dd className="spell-components" dangerouslySetInnerHTML={{ __html: decodeSpellComponents(spell.components) }}></dd>
 
                 <dt>Duration:</dt>
                 <dd>{spell.duration}</dd>
