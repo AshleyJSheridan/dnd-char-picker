@@ -6,7 +6,7 @@ import { ClassSpellList } from "@/app/repositories/classSpellList";
 import { ClassSpellSlots } from "@/app/repositories/classSpellSlots";
 import { CharClass } from "@/app/repositories/charClasses";
 import { SkillType } from "@/app/enums/skillType";
-import { Spells as SpellBook } from "@/app/repositories/spells";
+import { ISpell, Spells as SpellBook } from "@/app/repositories/spells";
 import SpellGroupList from "./spellGroupList";
 
 export default function Spells({canShow, currentStep, setCurrentStep, charClass, level}: {
@@ -19,9 +19,10 @@ export default function Spells({canShow, currentStep, setCurrentStep, charClass,
     const [cantripsAllowed, setCantripsAllowed] = useState(0);
     const [spellsAllowed, setSpellsAllowed] = useState(0);
     const [spellMaxLevel, setSpellMaxLevel] = useState(0);
+    const [selectedSpells, setSelectedSpells] = useState<ISpell[]>([]);
     const maxSpellLevel = 9;
 
-    if(canShow && charClass && spellMaxLevel === 0) {
+    if(canShow && charClass) {
         initCharSpellCounts();
     }
 
@@ -35,19 +36,43 @@ export default function Spells({canShow, currentStep, setCurrentStep, charClass,
     }
 
     function initCharSpellCounts() {
-        setCantripsAllowed(getSpellCountAvailablePerSpellAndCharLevel(level, 0));
-        setSpellsAllowed(getTotalSpellCountAvailable());
-        setSpellMaxLevel(getMaxCharSpellLevel());
+        if(spellMaxLevel === 0) {
+            setCantripsAllowed(getSpellCountAvailablePerSpellAndCharLevel(level, 0));
+            setSpellsAllowed(getTotalSpellCountAvailable());
+            setSpellMaxLevel(getMaxCharSpellLevel());
+        }
     }
 
     function getAllSpellsByGroup(levels: string[]): React.JSX.Element[] {
         return levels.map((level, index) => {
             return (
                 <React.Fragment key={index}>
-                    <SpellGroupList charClass={charClass} level={index} levelLabel={level}></SpellGroupList>
+                    <SpellGroupList 
+                        charClass={charClass}
+                        level={index}
+                        levelLabel={level}
+                        selectSpell={selectSpell}
+                        selectedSpells={selectedSpells}
+                    ></SpellGroupList>
                 </React.Fragment>
             )
         });
+    }
+
+    function selectSpell(spell: ISpell): void {
+        if(selectedSpells.includes(spell)) {
+            // de-select spell
+            let spells = [...selectedSpells];
+            spells.splice(spells.indexOf(spell), 1);
+            setSelectedSpells(spells);
+
+            console.log('de-select');
+        } else {
+            // todo: only allow selection if within count limit for spell level
+            setSelectedSpells([...selectedSpells, spell]);
+
+            console.log('select');
+        }
     }
 
     function getTotalSpellCountAvailable(): number {

@@ -2,8 +2,10 @@
 
 import { ISpell } from "@/app/repositories/spells";
 
-export default function Spell({spell}: {
-    spell: ISpell
+export default function Spell({spell, selectSpell, selected}: {
+    spell: ISpell,
+    selectSpell: Function,
+    selected: boolean
 }) {
     function decodeSpellComponents(componentLetters: string): string {
         const parts = componentLetters.split(',');
@@ -25,28 +27,30 @@ export default function Spell({spell}: {
     }
     
     return (
-        <li>
-            <div className={'spell-school-icon spell-school-' + spell.school}>
-                <img src={`/img/spell school icons/${spell.school}.svg`} alt={spell.school}/>
-            </div>
-            <div className="spell-name">{spell.name}</div>
-            <dl className="spell-details">
-                <dt>School</dt>
-                <dd>{spell.school}</dd>
+        <li className={selected ? 'selected' : ''}>
+            <button onClick={() => selectSpell(spell)}>
+                <div className={'spell-school-icon spell-school-' + spell.school}>
+                    <img src={`/img/spell school icons/${spell.school}.svg`} alt={spell.school}/>
+                </div>
+                <div className="spell-name">{spell.name}</div>
+                <dl className="spell-details">
+                    <dt>School</dt>
+                    <dd>{spell.school}</dd>
 
-                <dt>Casting time:</dt>
-                <dd>{spell.castTime}</dd>
+                    <dt>Casting time:</dt>
+                    <dd>{spell.castTime}</dd>
 
-                <dt>Range:</dt>
-                <dd>{spell.range}</dd>
+                    <dt>Range:</dt>
+                    <dd>{spell.range}</dd>
 
-                <dt>Components:</dt>
-                <dd className="spell-components" dangerouslySetInnerHTML={{ __html: decodeSpellComponents(spell.components) }}></dd>
+                    <dt>Components:</dt>
+                    <dd className="spell-components" dangerouslySetInnerHTML={{ __html: decodeSpellComponents(spell.components) }}></dd>
 
-                <dt>Duration:</dt>
-                <dd>{spell.duration}</dd>
-            </dl>
-            <p className="spell-description">{spell.shortDescription}</p>
+                    <dt>Duration:</dt>
+                    <dd>{spell.duration}</dd>
+                </dl>
+                <p className="spell-description">{spell.shortDescription}</p>
+            </button>
         </li>
     );
 }

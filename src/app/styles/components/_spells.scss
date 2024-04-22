@@ -18,13 +18,19 @@
             background-color: $white;
             border: 1px solid $light-grey;
             border-radius: 5px;
-            cursor: pointer;
             display: block;
             padding: .5em;
             margin: .5em;
 
-            &:hover {
-                background-color: $light-green;
+            &.selected {
+                background-color: $dark-purple;
+            }
+
+            button {
+                cursor: pointer;
+                font-size: initial;
+                padding: .5em;
+                text-align: left;
             }
         }
 

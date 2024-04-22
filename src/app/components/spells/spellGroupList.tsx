@@ -3,15 +3,21 @@
 import { SkillType } from "@/app/enums/skillType";
 import { CharClass } from "@/app/repositories/charClasses";
 import { ClassSpellList } from "@/app/repositories/classSpellList";
-import { Spells as SpellBook } from "@/app/repositories/spells";
+import { ISpell, Spells as SpellBook } from "@/app/repositories/spells";
 import React from "react";
 import Spell from "./spell";
 
-export default function SpellGroupList({charClass, level, levelLabel}: {
+export default function SpellGroupList({charClass, level, levelLabel, selectSpell, selectedSpells}: {
     charClass: CharClass | null,
     level: number,
-    levelLabel: string
+    levelLabel: string,
+    selectSpell: Function,
+    selectedSpells: ISpell[];
 }) {
+    function isSpellSelected(spell: ISpell): boolean {
+        return selectedSpells.includes(spell);
+    }
+
     function getClassSpellsForLevel(level: number): string | React.JSX.Element[] {
         if(!charClass)
             return '';
@@ -36,7 +42,7 @@ export default function SpellGroupList({charClass, level, levelLabel}: {
         }).map(spell => {
             return (
                 <React.Fragment key={spell.id}>
-                    <Spell spell={spell}></Spell>
+                    <Spell spell={spell} selectSpell={selectSpell} selected={isSpellSelected(spell)}></Spell>
                 </React.Fragment>
             );
         });
