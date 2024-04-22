@@ -65,14 +65,35 @@ export default function Spells({canShow, currentStep, setCurrentStep, charClass,
             let spells = [...selectedSpells];
             spells.splice(spells.indexOf(spell), 1);
             setSelectedSpells(spells);
-
-            console.log('de-select');
         } else {
-            // todo: only allow selection if within count limit for spell level
-            setSelectedSpells([...selectedSpells, spell]);
+            if(spell.level === 0) {
+                // select cantrip if within count
+                const cantripCount = getCantripCount();
 
-            console.log('select');
+                if(cantripCount < cantripsAllowed) {
+                    setSelectedSpells([...selectedSpells, spell]);
+                }
+            } else {
+                // select spell if within count and level is allowed
+                const spellCount = getSpellCount();
+
+                if(spellCount < spellsAllowed && spell.level <= spellMaxLevel) {
+                    setSelectedSpells([...selectedSpells, spell]);
+                }
+            }
         }
+    }
+
+    function getCantripCount(): number {
+        return selectedSpells.filter(spell => {
+            return spell.level === 0
+        }).length;
+    }
+
+    function getSpellCount(): number {
+        return selectedSpells.filter(spell => {
+            return spell.level > 0
+        }).length;
     }
 
     function getTotalSpellCountAvailable(): number {
@@ -136,14 +157,14 @@ export default function Spells({canShow, currentStep, setCurrentStep, charClass,
         <section className="spells-selection">
             <h2>{charClass?.name} Spells</h2>
 
-            <p>Remaining spells for a level {level} {charClass?.name}:</p>
+            <p>Selected spells for a level {level} {charClass?.name}:</p>
 
             <dl>
                 <dt>Cantrips</dt>
-                <dd>{cantripsAllowed}</dd>
+                <dd>{getCantripCount()} of {cantripsAllowed}</dd>
 
                 <dt>Spells</dt>
-                <dd>{spellsAllowed} at spell level {spellMaxLevel}</dd>
+                <dd>{getSpellCount()} of {spellsAllowed} at spell level {spellMaxLevel}</dd>
             </dl>
 
             <button className="button-next" onClick={() => next()}>Next</button>
