@@ -77,7 +77,7 @@ export const Skills = {
 		primaryAbility: Abilities.CHA },
     'PERSUASION': { 
 		id: 'PERSUASION', 
-		name: 'Persausion', 
+		name: 'Persuasion', 
         description: 'Persuasion is used when you attempt to influence someone or a group of people with tact, social graces, or good nature.', 
 		primaryAbility: Abilities.CHA },
     'RELIGION': { 

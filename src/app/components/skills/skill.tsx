@@ -10,6 +10,9 @@ export default function CharSkill({skill, skillSelected, selectionReadOnly, hand
 
     return (
         <li key={skill.id} className={skillSelected ? 'selected' : ''}>
+            <div className="skill-icon">
+                <img src={`/img/skill icons/${skill.name.toLowerCase()}.svg`} alt={skill.name}/>
+            </div>
             <div className="checkbox">
                 <input
                     type="checkbox"
