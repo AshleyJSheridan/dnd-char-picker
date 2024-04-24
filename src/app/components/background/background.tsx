@@ -5,7 +5,7 @@ import { Background, Backgrounds } from "@/app/enums/backgrounds";
 import BackgroundDetails from "./backgroundDetails";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 
-export default function Background({canShow, currentStep, setCurrentStep, setBackground}: {
+export default function CharBackground({canShow, currentStep, setCurrentStep, setBackground}: {
     canShow: boolean,
     currentStep: ICurrentStep, 
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
@@ -40,7 +40,7 @@ export default function Background({canShow, currentStep, setCurrentStep, setBac
         );
     }
 
-    function handleConfirmBackgroundSelect(background: Background) {
+    function handleConfirmBackgroundSelect(background: Background): void {
         setBackground(background);
         setCurrentStep({
             ...currentStep,

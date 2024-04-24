@@ -9,6 +9,7 @@ import StatScoreTable from "./statScoreTable";
 import { Abilities, Ability } from "@/app/enums/abilities";
 import { Race } from "@/app/repositories/races";
 import { CharClass } from "../../repositories/charClasses";
+import { iStats } from "@/app/interfaces/iStats";
 
 export default function Stats({canShow, currentStep, setCurrentStep, race, charClass, setStats}: {
     canShow: boolean,
@@ -16,7 +17,7 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, charC
     setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
     race: Race | null;
     charClass: CharClass |null,
-    setStats: React.Dispatch<SetStateAction<any>>
+    setStats: React.Dispatch<SetStateAction<iStats[]>>
 }) {
     const [statRolls, setStatRolls] = useState(Array(6).fill(Array(4).fill(0)));
     const [assignedStats, setAssignedStats] = useState(Array(6).fill('-'));

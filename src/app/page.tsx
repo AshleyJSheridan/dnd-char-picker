@@ -6,14 +6,17 @@ import { NavItems } from "./enums/navItems";
 import Gender from "./components/gender/gender";
 import Race from './components/pick-race/race';
 import Alignment from "./components/alignment/alignment";
-import CharClass from "./components/class/charClass";
-import Background from "./components/background/background";
+import ClassSelection from "./components/class/charClass";
+import CharBackground from "./components/background/background";
 import { Race as CharRace } from "./repositories/races";
 import Level from "./components/level/level";
 import Stats from "./components/stats/stats";
 import CharSkills from "./components/skills/skills";
 import CharLanguages from "./components/languages/languages";
 import Spells from "./components/spells/spells";
+import { Background } from "./enums/backgrounds";
+import { CharClass } from "./repositories/charClasses";
+import { iStats } from "./interfaces/iStats";
 
 export default function Home() {
     const [currentStep, setCurrentStep] = useState({current: 1, maxCompleted: 0});
@@ -21,10 +24,10 @@ export default function Home() {
     const [gender, setGender] = useState(0);
     const [race, setRace] = useState<CharRace|null>(null);
     const [alignment, setAlignment] = useState('True Neutral');
-    const [charClass, setCharClass] = useState(null);
-    const [background, setBackground] = useState(null);
+    const [charClass, setCharClass] = useState<CharClass|null>(null);
+    const [background, setBackground] = useState<Background|null>(null);
     const [level, setLevel] = useState(1);
-    const [stats, setStats] = useState({});
+    const [stats, setStats] = useState<iStats[]>([]);
     const [skills, setSkills] = useState({});
     const [languages, setLanguages] = useState<string[]>([]);
     const [spells, setSpells] = useState<string[]>([]);
@@ -71,13 +74,13 @@ export default function Home() {
                     alignment={alignment} 
                     setAlignment={setAlignment}
                 />
-                <CharClass
+                <ClassSelection
                     canShow={canShowComponent('Class')}
                     currentStep={currentStep} 
                     setCurrentStep={setCurrentStep} 
                     setCharClass={setCharClass}
                 />
-                <Background
+                <CharBackground
                     canShow={canShowComponent('Background')}
                     currentStep={currentStep} 
                     setCurrentStep={setCurrentStep} 

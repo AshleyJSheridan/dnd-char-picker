@@ -8,7 +8,7 @@ import { InventoryItem } from "@/app/enums/inventory";
 export default function BackgroundDetails({background, setSelectedBackground, confirmBackground}: {
     background: Background, 
     setSelectedBackground: React.Dispatch<SetStateAction<Background|null>>,
-    confirmBackground: React.Dispatch<SetStateAction<Background>>
+    confirmBackground: Function
 }) {
     React.useEffect(() => {
         document.addEventListener("keydown", escFunction, false);

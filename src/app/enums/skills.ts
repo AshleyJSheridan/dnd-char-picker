@@ -1,13 +1,10 @@
 import { Abilities, Ability } from "./abilities";
 
 export interface Skill {
-    
-		id: string;
-    
-		name: string;
-    description: string;
-    
-		primaryAbility: Ability;
+	id: string;
+	name: string;
+	description: string;
+	primaryAbility: Ability;
 }
 
 type Skills = Record<string, Skill>;

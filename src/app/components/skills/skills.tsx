@@ -10,6 +10,7 @@ import { TraitType } from "@/app/enums/traitTypes";
 import { Trait } from "@/app/repositories/traits";
 import CharSkill from "./skill";
 import React from "react";
+import { ISelectedSkill } from "@/app/interfaces/iSelectedSkill";
 
 export default function CharSkills({canShow, currentStep, setCurrentStep, race, background, level, charClass, setSkills}: {
     canShow: boolean,
@@ -19,7 +20,7 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
     background: Background | null,
     level: number,
     charClass: CharClass | null,
-    setSkills: React.Dispatch<SetStateAction<any>>,
+    setSkills: React.Dispatch<SetStateAction<(Skill | undefined)[]>>,
 }) {
     const [skillsAllowed, setSkillsAllowed] = useState(0);
     const [selectedSkills, setSelectedSkills] = useState({});
@@ -49,10 +50,10 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
     }
 
     function getSkillIsRacial(traits: Trait[] | undefined | null, skill: Skill): boolean {
-        if(!race?.traits)
+        if(!traits)
             return false;
 
-        return race.traits.some((trait) => trait?.associatedSkill?.id === skill.id);
+        return traits.some((trait) => trait?.associatedSkill?.id === skill.id);
     }
 
     function initialiseSelectedSkills(race: Race | null, background: Background | null): void {
@@ -60,7 +61,7 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
             return;
 
         let allCharSkills = getPreselectedSkills(race, background);
-        let newSelectedSkills = {...selectedSkills};
+        let newSelectedSkills: Record<string, ISelectedSkill> = {...selectedSkills};
 
         Object.entries(Skills).map(([skillName, {}]) => {
             const skill: Skill = Skills[skillName as keyof Skills];
@@ -81,7 +82,7 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
 
         if(eventTarget instanceof HTMLInputElement) {
             //let selectedSkill = selectedSkills[skillId];
-            let updatedSkills = {...selectedSkills};
+            let updatedSkills: Record<string, ISelectedSkill> = {...selectedSkills};
             if(!updatedSkills[skillId].readonly) {
                 if(skillsAllowed > 0 && updatedSkills[skillId].selected === false) {
                     setSkillsAllowed(skillsAllowed - 1);
@@ -102,7 +103,7 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
 
     function getSkills(race: Race | null, background: Background | null) {
         return Object.entries(Skills).map(([skillName, {}]) => {
-            const skill = Skills[skillName as keyof Skills];
+            const skill: Skill = Skills[skillName as keyof Skills];
             const skillSelected = selectedSkills[skill.id]?.selected ?? false;
             const selectionReadOnly = selectedSkills[skill.id]?.readonly ?? false;
 

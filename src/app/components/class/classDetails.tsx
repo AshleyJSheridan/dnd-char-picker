@@ -7,7 +7,7 @@ import { ClassSkill } from "@/app/repositories/classSkills";
 export default function ClassDetails({charClass, setCharClass, confirmCharClass}: {
     charClass: CharClass | null, 
     setCharClass: React.Dispatch<SetStateAction<CharClass|null>>, 
-    confirmCharClass: React.Dispatch<SetStateAction<CharClass|null>>
+    confirmCharClass: Function
 }, ) {
     React.useEffect(() => {
         document.addEventListener("keydown", escFunction, false);
