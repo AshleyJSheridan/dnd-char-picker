@@ -4,6 +4,7 @@ import React, { SetStateAction, useState } from "react";
 import { Background, Backgrounds } from "@/app/enums/backgrounds";
 import BackgroundDetails from "./backgroundDetails";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
+import { PersistState } from "@/app/helpers/persistStateHelper";
 
 export default function CharBackground({canShow, currentStep, setCurrentStep, setBackground}: {
     canShow: boolean,
@@ -25,6 +26,7 @@ export default function CharBackground({canShow, currentStep, setCurrentStep, se
 
     function handleBackgroundSelect(background: Background) {
         setSelectedBackground(background);
+        PersistState.save('background', background);
     }
 
     function getBackgroundDetailsModal() {

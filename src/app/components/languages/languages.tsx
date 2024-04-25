@@ -1,6 +1,7 @@
 import { Language, Languages } from "@/app/enums/languages";
 import { SkillType } from "@/app/enums/skillType";
 import { TraitType } from "@/app/enums/traitTypes";
+import { PersistState } from "@/app/helpers/persistStateHelper";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { CharClass } from "@/app/repositories/charClasses";
 import { Race } from "@/app/repositories/races";
@@ -39,6 +40,7 @@ export default function CharLanguages({canShow, currentStep, setCurrentStep, rac
             current: currentStep.current + 1,
             maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
         });
+        PersistState.save('languages', langIds);
     }
 
     function initialiseAvailableCount(race: Race, charClass: CharClass): void {

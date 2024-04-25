@@ -32,7 +32,9 @@ export default function Spells({canShow, currentStep, setCurrentStep, charClass,
             ...currentStep,
             current: currentStep.current + 1,
             maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        });*/
+        });
+        PersistState.save('spells', spells);
+        */
     }
 
     function initCharSpellCounts() {

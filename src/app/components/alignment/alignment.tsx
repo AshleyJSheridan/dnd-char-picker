@@ -3,6 +3,7 @@
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { Alignments } from "../../enums/alignments";
 import { SetStateAction } from "react";
+import { PersistState } from "@/app/helpers/persistStateHelper";
 
 export default function Alignment({canShow, currentStep, setCurrentStep, alignment, setAlignment}: 
     {
@@ -34,6 +35,7 @@ export default function Alignment({canShow, currentStep, setCurrentStep, alignme
             current: currentStep.current + 1,
             maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
         }); 
+        PersistState.save('alignment', alignment);
     }
 
     if(!canShow)

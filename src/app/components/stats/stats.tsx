@@ -10,6 +10,7 @@ import { Abilities, Ability } from "@/app/enums/abilities";
 import { Race } from "@/app/repositories/races";
 import { CharClass } from "../../repositories/charClasses";
 import { iStats } from "@/app/interfaces/iStats";
+import { PersistState } from "@/app/helpers/persistStateHelper";
 
 export default function Stats({canShow, currentStep, setCurrentStep, race, charClass, setStats}: {
     canShow: boolean,
@@ -42,6 +43,7 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, charC
                 current: currentStep.current + 1,
                 maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
             });
+            PersistState.save('stats', stats);
         }
     }
 

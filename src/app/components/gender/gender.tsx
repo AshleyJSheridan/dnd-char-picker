@@ -1,5 +1,6 @@
 "use client";
 
+import { PersistState } from "@/app/helpers/persistStateHelper";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { SetStateAction } from "react";
 
@@ -20,7 +21,8 @@ export default function Gender({canShow, gender, setGender, currentStep, setCurr
                 ...currentStep,
                 current: currentStep.current + 1,
                 maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-            }); 
+            });
+            PersistState.save('gender', gender);
         }
     }
 

@@ -5,6 +5,7 @@ import { Race, Races, SubRace } from "../../repositories/races";
 import TraitList from "./traitList";
 import RaceIntro from "./raceIntro";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
+import { PersistState } from "@/app/helpers/persistStateHelper";
 
 export default function Race({canShow, gender, currentStep, setCurrentStep, race, setRace}: {
     canShow: boolean,
@@ -37,6 +38,7 @@ export default function Race({canShow, gender, currentStep, setCurrentStep, race
                 current: currentStep.current + 1,
                 maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
             }); 
+            PersistState.save('race', race);
         }
     }
 

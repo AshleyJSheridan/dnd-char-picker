@@ -5,6 +5,7 @@ import ClassDetails from "./classDetails";
 import React, { SetStateAction, useState } from "react";
 import ClassIcon from "./classIcon";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
+import { PersistState } from "@/app/helpers/persistStateHelper";
 
 export default function ClassSelection({canShow, currentStep, setCurrentStep, setCharClass}: {
     canShow: boolean, 
@@ -32,12 +33,15 @@ export default function ClassSelection({canShow, currentStep, setCurrentStep, se
     }
 
     function handleConfirmClassSelect(charClass: CharClass | null) {
-        setCharClass(charClass);
-        setCurrentStep({
-            ...currentStep,
-            current: currentStep.current + 1,
-            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        }); 
+        if(charClass) {
+            setCharClass(charClass);
+            setCurrentStep({
+                ...currentStep,
+                current: currentStep.current + 1,
+                maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
+            });
+            PersistState.save('class', charClass);
+        }
     }
 
     function getClassDetailsModal() {

@@ -11,6 +11,7 @@ import { Trait } from "@/app/repositories/traits";
 import CharSkill from "./skill";
 import React from "react";
 import { ISelectedSkill } from "@/app/interfaces/iSelectedSkill";
+import { PersistState } from "@/app/helpers/persistStateHelper";
 
 export default function CharSkills({canShow, currentStep, setCurrentStep, race, background, level, charClass, setSkills}: {
     canShow: boolean,
@@ -30,12 +31,14 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
     }
 
     function next() {
-        setSkills(getPreselectedSkills(race, background));
+        const skills = getPreselectedSkills(race, background)
+        setSkills(skills);
         setCurrentStep({
             ...currentStep,
             current: currentStep.current + 1,
             maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
         });
+        PersistState.save('skills', skills);
     }
 
     function getPreselectedSkills(race: Race | null, background: Background | null): (Skill | undefined)[] {

@@ -1,5 +1,6 @@
 "use client";
 
+import { PersistState } from "@/app/helpers/persistStateHelper";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { SetStateAction } from "react";
 
@@ -17,7 +18,8 @@ export default function Level({canShow, currentStep, setCurrentStep, setLevel}: 
             ...currentStep,
             current: currentStep.current + 1,
             maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        }); 
+        });
+        PersistState.save('level', fixedLevel);
     }
 
     if(!canShow)
