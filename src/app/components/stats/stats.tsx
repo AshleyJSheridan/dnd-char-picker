@@ -12,10 +12,9 @@ import { CharClass } from "../../repositories/charClasses";
 import { iStats } from "@/app/interfaces/iStats";
 import { PersistState } from "@/app/helpers/persistStateHelper";
 
-export default function Stats({canShow, currentStep, setCurrentStep, race, charClass, setStats}: {
+export default function Stats({canShow, moveNextStep, race, charClass, setStats}: {
     canShow: boolean,
-    currentStep: ICurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
+    moveNextStep: Function,
     race: Race | null;
     charClass: CharClass |null,
     setStats: React.Dispatch<SetStateAction<iStats[]>>
@@ -38,11 +37,7 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, charC
             ];
 
             setStats(stats);
-            setCurrentStep({
-                ...currentStep,
-                current: currentStep.current + 1,
-                maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-            });
+            moveNextStep();
             PersistState.save('stats', stats);
         }
     }
@@ -69,7 +64,6 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, charC
          */
         let rolls = Array(numberOfStats);
 
-        
         for(let i = 0; i < numberOfStats; i ++) {   
             rolls[i] = Array(dicePerStat);
             
@@ -107,6 +101,25 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, charC
         }).join(', ');
     }
 
+    function storeRolls() {
+        PersistState.save('tempStatsRoll', statRolls);
+    }
+
+    function restoreRolls() {
+        const storedState = PersistState.read('tempStatsRoll');
+
+        if(storedState) {
+            setStatRolls(storedState);
+        }
+    }
+
+    function hasRolls(): boolean {
+        return statRolls.reduce((acc, curr) => {
+            // Flatten and sum the inner arrays
+            return acc + curr.reduce((a: number, c: number) => a + c, 0);
+          }, 0) > 0;
+    }
+
     if(!canShow)
         return '';
 
@@ -122,6 +135,9 @@ export default function Stats({canShow, currentStep, setCurrentStep, race, charC
                 <div className="stats-roll-buttons">
                     <button type="button" onClick={rollStatDice} className="button button-primary">Roll</button>
                     <button type="button" onClick={clearStatDice} className="button">Reset</button>
+
+                    <button type="button" onClick={storeRolls} className="button rolls-store" disabled={!hasRolls()}><span>Store Rolls</span></button>
+                    <button type="button" onClick={restoreRolls} className="button rolls-restore" disabled={!hasRolls()}><span>Restore Rolls</span></button>
                 </div>
 
                 <div className="stats-roll-blocks">

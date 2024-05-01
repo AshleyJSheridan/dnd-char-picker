@@ -4,14 +4,12 @@ import React, { SetStateAction } from "react";
 import { Race, Races, SubRace } from "../../repositories/races";
 import TraitList from "./traitList";
 import RaceIntro from "./raceIntro";
-import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { PersistState } from "@/app/helpers/persistStateHelper";
 
-export default function Race({canShow, gender, currentStep, setCurrentStep, race, setRace}: {
+export default function Race({canShow, gender, moveNextStep, race, setRace}: {
     canShow: boolean,
     gender: number,
-    currentStep: ICurrentStep,
-    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
+    moveNextStep: Function,
     race: Race | null,
     setRace: React.Dispatch<SetStateAction<Race|null>>
 }) {
@@ -33,11 +31,7 @@ export default function Race({canShow, gender, currentStep, setCurrentStep, race
 
     function next() {
         if(race && (!race?.subraces || (race?.subraces && race?.subrace))) {
-            setCurrentStep({
-                ...currentStep,
-                current: currentStep.current + 1,
-                maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-            }); 
+            moveNextStep();
             PersistState.save('race', race);
         }
     }

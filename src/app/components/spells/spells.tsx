@@ -9,10 +9,9 @@ import { SkillType } from "@/app/enums/skillType";
 import { ISpell, Spells as SpellBook } from "@/app/repositories/spells";
 import SpellGroupList from "./spellGroupList";
 
-export default function Spells({canShow, currentStep, setCurrentStep, charClass, level}: {
+export default function Spells({canShow, moveNextStep, charClass, level}: {
     canShow: boolean,
-    currentStep: ICurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
+    moveNextStep: Function,
     charClass: CharClass | null,
     level: number
 }) {
@@ -28,11 +27,7 @@ export default function Spells({canShow, currentStep, setCurrentStep, charClass,
 
     function next() {
         /*setSkills(getPreselectedSkills(race, background));
-        setCurrentStep({
-            ...currentStep,
-            current: currentStep.current + 1,
-            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        });
+        moveNextStep();
         PersistState.save('spells', spells);
         */
     }

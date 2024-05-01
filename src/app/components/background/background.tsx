@@ -6,10 +6,9 @@ import BackgroundDetails from "./backgroundDetails";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { PersistState } from "@/app/helpers/persistStateHelper";
 
-export default function CharBackground({canShow, currentStep, setCurrentStep, setBackground}: {
+export default function CharBackground({canShow, moveNextStep, setBackground}: {
     canShow: boolean,
-    currentStep: ICurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
+    moveNextStep: Function,
     setBackground: React.Dispatch<SetStateAction<Background|null>>
 }) {
     let [selectedBackground, setSelectedBackground] = useState<Background|null>(null);
@@ -44,11 +43,7 @@ export default function CharBackground({canShow, currentStep, setCurrentStep, se
 
     function handleConfirmBackgroundSelect(background: Background): void {
         setBackground(background);
-        setCurrentStep({
-            ...currentStep,
-            current: currentStep.current + 1,
-            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        });
+        moveNextStep();
     }
 
     if(!canShow)

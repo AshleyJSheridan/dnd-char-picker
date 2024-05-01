@@ -1,15 +1,13 @@
 "use client";
 
 import { PersistState } from "@/app/helpers/persistStateHelper";
-import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { SetStateAction } from "react";
 
-export default function Gender({canShow, gender, setGender, currentStep, setCurrentStep}: {
+export default function Gender({canShow, gender, setGender, moveNextStep}: {
     canShow: boolean, 
     gender: number, 
     setGender: React.Dispatch<SetStateAction<number>>,
-    currentStep: ICurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>
+    moveNextStep: Function
 }) {
     function handleGenderSelection(genderSelection: number) {
         setGender(genderSelection);
@@ -17,11 +15,7 @@ export default function Gender({canShow, gender, setGender, currentStep, setCurr
 
     function next() {
         if(gender > 0) {
-            setCurrentStep({
-                ...currentStep,
-                current: currentStep.current + 1,
-                maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-            });
+            moveNextStep();
             PersistState.save('gender', gender);
         }
     }

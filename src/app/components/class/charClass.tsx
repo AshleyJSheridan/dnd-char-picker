@@ -7,10 +7,9 @@ import ClassIcon from "./classIcon";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { PersistState } from "@/app/helpers/persistStateHelper";
 
-export default function ClassSelection({canShow, currentStep, setCurrentStep, setCharClass}: {
+export default function ClassSelection({canShow, moveNextStep, setCharClass}: {
     canShow: boolean, 
-    currentStep: ICurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
+    moveNextStep: Function,
     setCharClass: React.Dispatch<SetStateAction<CharClass|null>>
 }) {
     let [selectedClass, setSelectedClass] = useState<CharClass|null>(null);
@@ -35,11 +34,7 @@ export default function ClassSelection({canShow, currentStep, setCurrentStep, se
     function handleConfirmClassSelect(charClass: CharClass | null) {
         if(charClass) {
             setCharClass(charClass);
-            setCurrentStep({
-                ...currentStep,
-                current: currentStep.current + 1,
-                maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-            });
+            moveNextStep();
             PersistState.save('class', charClass);
         }
     }

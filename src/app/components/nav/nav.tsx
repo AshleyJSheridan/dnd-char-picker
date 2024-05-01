@@ -2,10 +2,12 @@
 
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { NavItems } from "../../enums/navItems";
-import { SetStateAction } from "react";
+import { MouseEventHandler, SetStateAction } from "react";
 
-export default function Nav({currentStep, setCurrentStep}: {
-    currentStep: ICurrentStep, setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>
+export default function Nav({currentStep, setCurrentStep, reloadState}: {
+    currentStep: ICurrentStep,
+    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
+    reloadState: MouseEventHandler
 }) {
     const navContent = NavItems.map(nav =>
         <li key={nav.id} className={(currentStep.current === nav.id) ? 'active' : ''}>
@@ -30,6 +32,10 @@ export default function Nav({currentStep, setCurrentStep}: {
             <ul>
                 {navContent}
             </ul>
+
+            <div className="non-nav-buttons">
+                <button type="button" className="reload-state" onClick={reloadState}>Reload</button>
+            </div>
         </nav>
     )
 }

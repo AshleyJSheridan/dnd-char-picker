@@ -6,4 +6,8 @@ export class PersistState {
     static save(stateName: string, state: Object): boolean {
         return this.storage.saveItem(stateName, state);
     }
+
+    static read(stateName: string): any {
+        return this.storage.loadItem(stateName);
+    }
 };

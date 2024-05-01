@@ -4,21 +4,16 @@ import { PersistState } from "@/app/helpers/persistStateHelper";
 import { ICurrentStep } from "@/app/interfaces/iCurrentStep";
 import { SetStateAction } from "react";
 
-export default function Level({canShow, currentStep, setCurrentStep, setLevel}: {
+export default function Level({canShow, moveNextStep, setLevel}: {
     canShow: boolean,
-    currentStep: ICurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
+    moveNextStep: Function,
     setLevel: React.Dispatch<SetStateAction<number>>
 }) {
     const fixedLevel = 1;
 
     function next() {
         setLevel(fixedLevel)
-        setCurrentStep({
-            ...currentStep,
-            current: currentStep.current + 1,
-            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        });
+        moveNextStep();
         PersistState.save('level', fixedLevel);
     }
 

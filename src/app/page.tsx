@@ -17,6 +17,7 @@ import Spells from "./components/spells/spells";
 import { Background } from "./enums/backgrounds";
 import { CharClass } from "./repositories/charClasses";
 import { iStats } from "./interfaces/iStats";
+import { PersistState } from "./helpers/persistStateHelper";
 
 export default function Home() {
     const [currentStep, setCurrentStep] = useState({current: 1, maxCompleted: 0});
@@ -32,7 +33,7 @@ export default function Home() {
     const [languages, setLanguages] = useState<string[]>([]);
     const [spells, setSpells] = useState<string[]>([]);
 
-    function canShowComponent(navName: string) {
+    function canShowComponent(navName: string): boolean {
         let navItem;
 
         for(let i = 0; i < NavItems.length; i ++) {
@@ -48,62 +49,80 @@ export default function Home() {
         return navItem.id === currentStep.current;
     }
 
+    function reloadState(): void {
+        setGender(PersistState.read('gender'));
+        setRace(PersistState.read('race'));
+        setAlignment(PersistState.read('alignment'));
+        setCharClass(PersistState.read('class'));
+        setBackground(PersistState.read('background'));
+        setLevel(PersistState.read('lever'));
+        setStats(PersistState.read('stats'));
+        setSkills(PersistState.read('skills'));
+        setLanguages(PersistState.read('languages'));
+        //setMagic(PersistState.read('spells'));
+
+        setCurrentStep(PersistState.read('stepState'));
+    }
+
+    function moveNextStep(): void {
+        const stepState = {
+            ...currentStep,
+            current: currentStep.current + 1,
+            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
+        };
+        
+        setCurrentStep(stepState);
+        PersistState.save('stepState', stepState);
+    }
+
     return (
         <>
-            <Nav currentStep={currentStep} setCurrentStep={setCurrentStep}/>
+            <Nav currentStep={currentStep} setCurrentStep={setCurrentStep} reloadState={reloadState}/>
             <main>
                 <Gender 
                     canShow={canShowComponent('Gender')} 
                     gender={gender}
                     setGender={setGender} 
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep}
+                    moveNextStep={moveNextStep}
                 />
                 <Race 
                     canShow={canShowComponent('Race')} 
                     gender={gender} 
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep} 
+                    moveNextStep={moveNextStep}
                     race={race} 
                     setRace={setRace}
                 />
                 <Alignment
                     canShow={canShowComponent('Alignment')}
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep} 
+                    moveNextStep={moveNextStep}
                     alignment={alignment} 
                     setAlignment={setAlignment}
                 />
                 <ClassSelection
                     canShow={canShowComponent('Class')}
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep} 
+                    moveNextStep={moveNextStep}
                     setCharClass={setCharClass}
                 />
                 <CharBackground
                     canShow={canShowComponent('Background')}
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep} 
+                    moveNextStep={moveNextStep}
                     setBackground={setBackground}
                 />
                 <Level
                     canShow={canShowComponent('Level')}
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep} 
+                    moveNextStep={moveNextStep}
                     setLevel={setLevel}
                 />
                 <Stats
                     canShow={canShowComponent('Stats')}
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep} 
+                    moveNextStep={moveNextStep}
                     race={race}
                     charClass={charClass}
                     setStats={setStats}
                 />
                 <CharSkills
                     canShow={canShowComponent('Skills')}
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep} 
+                    moveNextStep={moveNextStep}
                     race={race}
                     background={background}
                     level={level}
@@ -112,16 +131,14 @@ export default function Home() {
                 />
                 <CharLanguages 
                     canShow={canShowComponent('Languages')}
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep}
+                    moveNextStep={moveNextStep}
                     race={race}
                     charClass={charClass}
                     setLanguages={setLanguages}
                 />
                 <Spells
                     canShow={canShowComponent('Magic')}
-                    currentStep={currentStep} 
-                    setCurrentStep={setCurrentStep}
+                    moveNextStep={moveNextStep}
                     charClass={charClass}
                     level={level}
                 />

@@ -5,11 +5,10 @@ import { Alignments } from "../../enums/alignments";
 import { SetStateAction } from "react";
 import { PersistState } from "@/app/helpers/persistStateHelper";
 
-export default function Alignment({canShow, currentStep, setCurrentStep, alignment, setAlignment}: 
+export default function Alignment({canShow, moveNextStep, alignment, setAlignment}: 
     {
         canShow: boolean, 
-        currentStep: ICurrentStep, 
-        setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>, 
+        moveNextStep: Function, 
         alignment: string, 
         setAlignment: React.Dispatch<SetStateAction<string>>
     }) {
@@ -30,11 +29,7 @@ export default function Alignment({canShow, currentStep, setCurrentStep, alignme
     }
 
     function next() {
-        setCurrentStep({
-            ...currentStep,
-            current: currentStep.current + 1,
-            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        }); 
+        moveNextStep();
         PersistState.save('alignment', alignment);
     }
 

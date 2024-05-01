@@ -13,10 +13,9 @@ import React from "react";
 import { ISelectedSkill } from "@/app/interfaces/iSelectedSkill";
 import { PersistState } from "@/app/helpers/persistStateHelper";
 
-export default function CharSkills({canShow, currentStep, setCurrentStep, race, background, level, charClass, setSkills}: {
+export default function CharSkills({canShow, moveNextStep, race, background, level, charClass, setSkills}: {
     canShow: boolean,
-    currentStep: ICurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
+    moveNextStep: Function,
     race: Race | null;
     background: Background | null,
     level: number,
@@ -33,11 +32,7 @@ export default function CharSkills({canShow, currentStep, setCurrentStep, race, 
     function next() {
         const skills = getPreselectedSkills(race, background)
         setSkills(skills);
-        setCurrentStep({
-            ...currentStep,
-            current: currentStep.current + 1,
-            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        });
+        moveNextStep();
         PersistState.save('skills', skills);
     }
 

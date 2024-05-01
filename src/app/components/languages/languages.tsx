@@ -8,10 +8,9 @@ import { Race } from "@/app/repositories/races";
 import React, { useState } from "react";
 import { SetStateAction } from "react";
 
-export default function CharLanguages({canShow, currentStep, setCurrentStep, race, charClass, setLanguages}: {
+export default function CharLanguages({canShow, moveNextStep, race, charClass, setLanguages}: {
     canShow: boolean,
-    currentStep: ICurrentStep, 
-    setCurrentStep: React.Dispatch<SetStateAction<ICurrentStep>>,
+    moveNextStep: Function,
     race: Race | null,
     charClass: CharClass | null,
     setLanguages: React.Dispatch<SetStateAction<string[]>>,
@@ -35,11 +34,7 @@ export default function CharLanguages({canShow, currentStep, setCurrentStep, rac
         });
 
         setLanguages(langIds);
-        setCurrentStep({
-            ...currentStep,
-            current: currentStep.current + 1,
-            maxCompleted: Math.max(currentStep.maxCompleted, currentStep.current)
-        });
+        moveNextStep();
         PersistState.save('languages', langIds);
     }
 
